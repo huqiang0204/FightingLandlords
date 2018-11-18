@@ -1,0 +1,1838 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>huqiang</name>
+    </assembly>
+    <members>
+        <member name="P:huqiang.UIModel.Content.BindingData">
+            <summary>
+            传入类型为IList
+            </summary>
+        </member>
+        <member name="M:huqiang.UIModel.ScrollX.ShowByIndex(System.Int32)">
+            <summary>
+            将视野转到新增的Item处，
+            </summary>
+            <param name="index_">新增item的下标</param>
+        </member>
+        <member name="P:huqiang.UIModel.ScrollY.Point">
+            <summary>
+            滚动的当前位置，从0开始
+            </summary>
+        </member>
+        <member name="P:huqiang.UIModel.ScrollY.Pos">
+            <summary>
+            0-1之间
+            </summary>
+        </member>
+        <member name="M:huqiang.UIModel.ScrollY.Scrolling(huqiang.EventCallBack,UnityEngine.Vector2)">
+            <summary>
+            
+            </summary>
+            <param name="back"></param>
+            <param name="v">移动的实际像素位移</param>
+        </member>
+        <member name="M:huqiang.UIModel.ScrollY.ShowByIndex(System.Int32)">
+            <summary>
+            指定下标处的位置重排
+            </summary>
+            <param name="_index"></param>
+        </member>
+        <member name="M:huqiang.UIModel.ScrollExC.Refresh(System.Single)">
+            <summary>
+            所有设置完毕或更新数据时刷新
+            </summary>
+        </member>
+        <member name="F:huqiang.UIModel.ScrollExY.Point">
+            <summary>
+            滚动的当前位置，从0开始
+            </summary>
+        </member>
+        <member name="M:huqiang.UIModel.ModelManager.UIBuffer.CreateNew">
+            <summary>
+            找回或创建一个新的实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.UIModel.ModelManager.UIBuffer.ReCycle(UnityEngine.GameObject)">
+            <summary>
+            回收一个实例
+            </summary>
+            <param name="ui"></param>
+        </member>
+        <member name="M:huqiang.UIModel.ModelManager.RegModel(System.Func{huqiang.UIModel.ModelElement},System.Action{UnityEngine.GameObject},System.Int32,System.Type[])">
+            <summary>
+            注册一个可供回收得模型
+            </summary>
+            <param name="create"></param>
+            <param name="reset"></param>
+            <param name="buffsize"></param>
+            <param name="types"></param>
+        </member>
+        <member name="M:huqiang.UIModel.ModelManager.SavePrefabToModel(UnityEngine.GameObject)">
+            <summary>
+            转化prefab
+            </summary>
+            <param name="game"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.UIModel.ModelManager.LoadFromPrefab(huqiang.UIModel.ModelElement,System.Object,UnityEngine.Transform,System.String)">
+            <summary>
+            兼容prefab
+            </summary>
+            <param name="mod"></param>
+            <param name="o"></param>
+            <param name="parent"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="F:huqiang.UIModel.ModelManager.CycleBuffer">
+            <summary>
+            挂载被回收得对象
+            </summary>
+        </member>
+        <member name="M:huqiang.UIModel.ModelManager.RecycleGameObject(UnityEngine.GameObject)">
+            <summary>
+            回收一个对象，包括子对象
+            </summary>
+            <param name="game"></param>
+        </member>
+        <member name="M:huqiang.GridScroll.Order">
+            <summary>
+            
+            </summary>
+            <param name="size">视口尺寸</param>
+            <param name="pos">视口位置</param>
+        </member>
+        <member name="M:huqiang.Model.CreateCone(System.Single,System.Single,System.Single)">
+            <summary>
+            创建一个圆锥，返回顶点和三角形
+            </summary>
+            <param name="r">半径</param>
+            <param name="h">高度</param>
+            <param name="arc">三角形弧度，越小精度越高，范围0-360取整</param>
+            <returns>顶点，三角形</returns>
+        </member>
+        <member name="T:huqiang.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.Closing">
+            <summary>
+              Looks up a localized string similar to Closing.
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.EmptyExpressionError">
+             <summary>
+               Looks up a localized string similar to {0}
+            {1}
+            Expression is missing..
+             </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.Opening">
+            <summary>
+              Looks up a localized string similar to Opening.
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.OperatorError">
+             <summary>
+               Looks up a localized string similar to {0}
+            {1}
+            Operator is missing..
+             </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.ParenthesisError">
+             <summary>
+               Looks up a localized string similar to {0}
+            {1}
+            {2} parenthesis is missing..
+             </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.sin9000">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.STZHONGS">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.SyntaxError">
+             <summary>
+               Looks up a localized string similar to {0}
+            {1}
+            Syntax error..
+             </summary>
+        </member>
+        <member name="P:huqiang.Properties.Resources.UnknownTokenError">
+             <summary>
+               Looks up a localized string similar to {0}
+            {1}
+            Unknown token &quot;{2}&quot;..
+             </summary>
+        </member>
+        <member name="M:huqiang.MathH.Inital">
+            <summary>
+            初始化数据
+            </summary>
+        </member>
+        <member name="M:huqiang.MathH.Sin(System.Single)">
+            <summary>
+            范围为0-360， 精度为0.01
+            </summary>
+            <param name="ax"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.Cos(System.Single)">
+            <summary>
+            范围为0-360， 精度为0.01
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.Tan(System.Single)">
+            <summary>
+            范围为0-360， 精度为0.01
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.SquareRootFloat(System.Single)">
+            <summary>
+            求平方根的快速算法，实际速度比微软自带的慢很多，算法仅供参考
+            </summary>
+            <param name="number"></param>
+            <returns>平方根</returns>
+        </member>
+        <member name="M:huqiang.MathH.SquareRootDouble(System.Double)">
+            <summary>
+            求平方根的快速算法，实际速度比微软自带的慢很多，算法仅供参考
+            </summary>
+            <param name="number"></param>
+            <returns>平方根</returns>
+        </member>
+        <member name="M:huqiang.MathH.atan(System.Single,System.Single)">
+            <summary>
+            反正切快速算法， 返回范围为0-360， 精度为0.01
+            </summary>
+            <param name="dx">x</param>
+            <param name="dy">y</param>
+            <returns>角度</returns>
+        </member>
+        <member name="M:huqiang.MathH.DotToEllipse(UnityEngine.Vector2,UnityEngine.Vector2,System.Single,System.Single)">
+            <summary>
+            检查点在椭圆里面
+            </summary>
+            <param name="ell_location"></param>
+            <param name="dot"></param>
+            <param name="xlen"></param>
+            <param name="ylen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.DotToPolygon(UnityEngine.Vector2[],UnityEngine.Vector2)">
+            <summary>
+             检测一个点是否在多边形里面
+            </summary>
+            <param name="A">多边形,按顺序连接</param>
+            <param name="B">点</param>
+            <returns>在里面返回true，反之返回false</returns>
+        </member>
+        <member name="M:huqiang.MathH.DotToPolygon(UnityEngine.Vector3[],UnityEngine.Vector2)">
+            <summary>
+             检测一个点是否在多边形里面
+            </summary>
+            <param name="A">多边形,按顺序连接</param>
+            <param name="B">点</param>
+            <returns>在里面返回true，反之返回false</returns>
+        </member>
+        <member name="M:huqiang.MathH.AngleCenter(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            求三个点夹角的中间点
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <param name="C"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.Parabola(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            抛物线解析式，返回一般表达式 y=a*x*x+b*x+c的 a,b,c的值
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <param name="C"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.BezierPoint(System.Single,UnityEngine.Vector3@,UnityEngine.Vector3@,UnityEngine.Vector3@)">
+            <summary>
+            一阶贝塞尔曲线
+            </summary>
+            <param name="t">比率</param>
+            <param name="p0">起点</param>
+            <param name="p1">中间点</param>
+            <param name="p2">结束点</param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.BezierPoint(System.Single,UnityEngine.Vector3@,UnityEngine.Vector3@,UnityEngine.Vector3@,UnityEngine.Vector3@)">
+            <summary>
+            二阶贝塞尔曲线
+            </summary>
+            <param name="t">比率</param>
+            <param name="p0">起点</param>
+            <param name="p1">中间点1</param>
+            <param name="p2">中间点2</param>
+            <param name="p3">结束点</param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.EulerToQuaternion(UnityEngine.Vector3)">
+            <summary>
+            欧拉角转四元数
+            </summary>
+            <param name="euler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.MultiplyQuaternion(UnityEngine.Vector4,UnityEngine.Vector4)">
+            <summary>
+            四元数相乘，代码来源xenko
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.QuaternionMultiplyVector(UnityEngine.Vector4,UnityEngine.Vector3)">
+            <summary>
+            旋转顶点，代码来源xenko
+            </summary>
+            <param name="q"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.RotationVertex(UnityEngine.Vector3[],UnityEngine.Vector4)">
+            <summary>
+            旋转网格所有顶点
+            </summary>
+            <param name="vertex"></param>
+            <param name="quat"></param>
+        </member>
+        <member name="M:huqiang.MathH.RotationVertex(UnityEngine.Vector3[],UnityEngine.Vector3)">
+            <summary>
+            旋转网格所有顶点
+            </summary>
+            <param name="vertex"></param>
+            <param name="angle"></param>
+        </member>
+        <member name="M:huqiang.MathH.GetTriangleNormal(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            计算三角形法线
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.SolutionTowEquation(System.Double,System.Double,System.Double)">
+            <summary>
+            解一元二次方程
+            </summary>
+            <param name="a">ax²</param>
+            <param name="b">bx</param>
+            <param name="c"></param>
+            <returns>数组0为实数1为虚数</returns>
+        </member>
+        <member name="M:huqiang.MathH.ThreeEquationShengjin(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            解一元三次方式，盛金公式法
+            </summary>
+            <param name="_a">ax³</param>
+            <param name="_b">bx²</param>
+            <param name="_c">cx</param>
+            <param name="_d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.MathH.PowDistance(System.Double,System.Double,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="r">AttenuationRate</param>
+            <param name="v">Velocity</param>
+            <param name="t">time</param>
+            <returns>最大速率行驶到当前时间产生的距离</returns>
+        </member>
+        <member name="M:huqiang.MathH.DistanceToVelocity(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="r">AttenuationRate</param>
+            <param name="d">Distance</param>
+            <returns>行驶到指定位置所需的最大速率</returns>
+        </member>
+        <member name="T:huqiang.Complex">
+            <summary>
+            表示一个复数
+            </summary>
+        </member>
+        <member name="M:huqiang.Complex.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:huqiang.Complex.#ctor(System.Double)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="real">实部</param>
+        </member>
+        <member name="M:huqiang.Complex.#ctor(System.Double,System.Double)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="real">实部</param>
+            <param name="image">虚部</param>
+        </member>
+        <member name="P:huqiang.Complex.Real">
+            <summary>
+            实部
+            </summary>
+        </member>
+        <member name="P:huqiang.Complex.Image">
+            <summary>
+            虚部
+            </summary>
+        </member>
+        <member name="M:huqiang.Complex.op_Addition(huqiang.Complex,huqiang.Complex)">
+            <summary>
+            复数的加法运算
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.Complex.op_Subtraction(huqiang.Complex,huqiang.Complex)">
+            <summary>
+            复数的减法运算
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.Complex.op_Multiply(huqiang.Complex,huqiang.Complex)">
+            <summary>
+            复数的乘法运算
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.Complex.ToModul">
+            <summary>
+            复数的求模运算
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:huqiang.TextInputEvent.KeySpeed">
+            <summary>
+            每秒5次
+            </summary>
+        </member>
+        <member name="M:huqiang.Extand.GetTriangleNormal(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            计算三角形法线
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.Tool.Correction(UnityEngine.Vector2,UnityEngine.Vector3,UnityEngine.Vector2)">
+            <summary>
+            校正
+            </summary>
+            <param name="parentSize">父轴尺寸</param>
+            <param name="sonPos">子位置</param>
+            <param name="sonSize">子尺寸</param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.Tool.DistanceToVelocities(System.Single,System.Single)">
+            <summary>
+            暴力枚举速率
+            </summary>
+            <param name="s"></param>
+            <param name="Rate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.Tool.GetDistance(System.Single,System.Single)">
+            <summary>
+            获取当前速率和衰减率所行走的路程
+            </summary>
+            <param name="v"></param>
+            <param name="Rate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:huqiang.LinearTransformation">
+            <summary>
+            线性变化值，参数范围为0-1
+            </summary>
+            <param name="sender"></param>
+            <param name="ratio"></param>
+            <returns></returns>
+        </member>
+        <member name="T:huqiang.AnimationManage">
+            <summary>
+            动画管理类，将所有动画添加至此类，进行统一更新
+            </summary>
+        </member>
+        <member name="P:huqiang.AnimationManage.Manage">
+            <summary>
+            返回此类的唯一实例
+            </summary>
+        </member>
+        <member name="P:huqiang.AnimationManage.Count">
+            <summary>
+            获取当前对象池中对象的数量
+            </summary>
+        </member>
+        <member name="M:huqiang.AnimationManage.Update">
+            <summary>
+            主更新函数，更新所有动画
+            </summary>
+        </member>
+        <member name="M:huqiang.AnimationManage.CreateAnimat(UnityEngine.Transform)">
+            <summary>
+            创建一个位置和旋转的基础动画
+            </summary>
+            <param name="target">Transform</param>
+            <returns></returns>
+        </member>
+        <member name="M:huqiang.AnimationManage.AddAnimat(huqiang.AnimatInterface)">
+            <summary>
+            添加一个新动画，重复添加会造成多倍运行
+            </summary>
+            <param name="ani">动画接口</param>
+        </member>
+        <member name="M:huqiang.AnimationManage.ReleaseAnimat(huqiang.AnimatInterface)">
+            <summary>
+            删除动画
+            </summary>
+            <param name="ani">动画接口</param>
+        </member>
+        <member name="M:huqiang.AnimationManage.ReleaseAll">
+            <summary>
+            释放所有动画
+            </summary>
+        </member>
+        <member name="M:huqiang.AnimationManage.ToDo(System.Single,System.Action{System.Object},System.Object)">
+            <summary>
+            委托某个事件在多少毫秒后执行
+            </summary>
+            <param name="time"></param>
+            <param name="action"></param>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:huqiang.AnimationManage.DoEvent(System.String)">
+            <summary>
+            执行某个事件
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:huqiang.AnimationManage.ClearEvent">
+            <summary>
+            清除所有事件
+            </summary>
+        </member>
+        <member name="T:huqiang.PlayStyle">
+            <summary>
+            动画类型，用于基本动画
+            </summary>
+        </member>
+        <member name="T:huqiang.AnimatInterface">
+            <summary>
+            动画接口
+            </summary>
+        </member>
+        <member name="T:huqiang.AnimatBase">
+            <summary>
+            基本动画
+            </summary>
+        </member>
+        <member name="F:huqiang.AnimatBase.Linear">
+            <summary>
+            动画运动线
+            </summary>
+        </member>
+        <member name="F:huqiang.AnimatBase.DataCache">
+            <summary>
+            用于缓存数据
+            </summary>
+        </member>
+        <member name="T:huqiang.Animat">
+            <summary>
+            控制位置和旋转的动画类
+            </summary>
+        </member>
+        <member name="M:huqiang.Animat.SetParabola(huqiang.Animat,UnityEngine.Vector2)">
+            <summary>
+            设置一个抛物线的中间点，x的值在0-1范围内,返回一个抛物线一般表达式的a，b，c的值，
+            </summary>
+            <param name="ani"></param>
+            <param name="point">参数不能为(1,1)</param>
+        </member>
+        <member name="M:huqiang.Animat.SetArc(huqiang.Animat,System.Single)">
+            <summary>
+            设置一个单弧线
+            </summary>
+            <param name="ani"></param>
+            <param name="r">弧度0-180</param>
+        </member>
+        <member name="M:huqiang.Animat.SetSArc(huqiang.Animat,System.Single,System.Single)">
+            <summary>
+            设置一个S行曲线
+            </summary>
+            <param name="ani"></param>
+            <param name="x">0-0.5f</param>
+            <param name="y">0-0.5f</param>
+        </member>
+        <member name="T:huqiang.ShaderFloat">
+            <summary>
+            用于控制着色器浮点数的动画
+            </summary>
+        </member>
+        <member name="T:huqiang.ShaderVector4">
+            <summary>
+            用于控制着色器四维向量的动画
+            </summary>
+        </member>
+        <member name="T:huqiang.ShaderAnimat">
+            <summary>
+            着色器动画基本类
+            </summary>
+        </member>
+        <member name="T:huqiang.PropertyFloat">
+            <summary>
+            属性动画，用于更新某个类的某个属性的动画
+            </summary>
+        </member>
+        <member name="T:huqiang.PropertyAnimat">
+            <summary>
+            属性动画基本类
+            </summary>
+        </member>
+        <member name="T:huqiang.Timer">
+            <summary>
+            定时器
+            </summary>
+        </member>
+        <member name="F:huqiang.UIContainer.point">
+            <summary>
+            当前指针
+            </summary>
+        </member>
+        <member name="F:huqiang.EventCallBack.MinBox">
+            <summary>
+            设置默认最小的按钮框
+            </summary>
+        </member>
+        <member name="F:huqiang.EventCallBack.PauseEvent">
+            <summary>
+            暂停事件
+            </summary>
+        </member>
+        <member name="F:huqiang.EventCallBack.ForceEvent">
+            <summary>
+            强制事件不被子组件拦截
+            </summary>
+        </member>
+        <member name="F:huqiang.EventCallBack.Penetrate">
+            <summary>
+            允许事件穿透
+            </summary>
+        </member>
+        <member name="F:huqiang.EventCallBack.UseActualSize">
+            <summary>
+            当此项开启时忽略最小尺寸校正
+            </summary>
+        </member>
+        <member name="M:Formula.ExpressionParser.FormulaExpressionBuilder.Build(System.String)">
+            <exception cref="T:Formula.ExpressionParser.SyntaxException"/>
+        </member>
+        <member name="M:GifDecoder.AsyncDecode(System.Byte[],System.String,System.Action{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="dat"></param>
+            <param name="tag"></param>
+            <param name="callback">返回Mission</param>
+        </member>
+        <member name="T:LeanAudio">
+             Create Audio dynamically and easily playback
+            
+             @class LeanAudio
+             @constructor
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LeanAudio.createAudio(UnityEngine.AnimationCurve,UnityEngine.AnimationCurve,LeanAudioOptions)" -->
+        <member name="T:LeanAudioOptions">
+             Pass in options to LeanAudio
+            
+             @class LeanAudioOptions
+             @constructor
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LeanAudioOptions.setFrequency(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanAudioOptions.setVibrato(UnityEngine.Vector3[])" -->
+        <member name="T:LeanTween">
+             LeanTween is an efficient tweening engine for Unity3d<br /><br />
+             <a href="#index">Index of All Methods</a> | <a href="LTDescr.html">Optional Paramaters that can be passed</a><br /><br />
+             <strong id='optional'>Optional Parameters</strong> are passed at the end of every method<br /> 
+             <br />
+             <i>Example:</i><br />
+             LeanTween.moveX( gameObject, 1f, 1f).setEase( <a href="LeanTweenType.html">LeanTweenType</a>.easeInQuad ).setDelay(1f);<br />
+             <br />
+             You can pass the optional parameters in any order, and chain on as many as you wish!<br /><br />
+             You can also modify this tween later, just save the unique id of the tween.<br />
+             <h4>Example:</h4>
+             int id = LeanTween.moveX(gameObject, 1f, 1f).id;<br />
+             <a href="LTDescr.html">LTDescr</a> d = LeanTween.<a href="#method_LeanTween.descr">descr</a>( id );<br /><br />
+             if(d!=null){ <span style="color:gray">// if the tween has already finished it will return null</span><br />
+             <span style="color:gray">&#160;&#160; // change some parameters</span><br />
+             &#160;&#160; d.setOnComplete( onCompleteFunc ).setEase( <a href="LeanTweenType.html">LeanTweenType</a>.easeInOutBack );<br />
+             }
+            
+             @class LeanTween
+        </member>
+        <member name="P:LeanTween.tweensRunning">
+            Find out how many tweens you have animating at a given time <summary>Find out how many tweens you have animating at a given time</summary>
+            
+            @method LeanTween.tweensRunning
+            @example
+              Debug.Log("I have "+LeanTween.tweensRunning+" animating!");
+        </member>
+        <member name="M:LeanTween.init(System.Int32)">
+            This line is optional. Here you can specify the maximum number of tweens you will use (the default is 400).  This must be called before any use of LeanTween is made for it to be effective. <summary>This line is optional. Here you can specify the maximum number of tweens you will use (the default is 400).  This must be called before any use of LeanTween is made for it to be effective. </summary>
+            
+            @method LeanTween.init
+            @param {integer} maxSimultaneousTweens:int The maximum number of tweens you will use, make sure you don't go over this limit, otherwise the code will throw an error
+            @example
+              LeanTween.init( 800 );
+        </member>
+        <member name="M:LeanTween.cancelAll">
+            Cancels all tweens <summary>Cancels all tweens</summary>
+            
+            @method LeanTween.cancelAll 
+            @param {bool} callComplete:bool (optional) if true, then the all onCompletes will run before canceling
+            @example LeanTween.cancelAll(true); <br />
+        </member>
+        <member name="M:LeanTween.cancel(UnityEngine.GameObject)">
+            Cancel all tweens that are currently targeting the gameObject<summary>Cancel all tweens that are currently targeting the gameObject</summary>
+            
+            @method LeanTween.cancel 
+            @param {GameObject} gameObject:GameObject gameObject whose tweens you wish to cancel
+            @param {bool} callOnComplete:bool (optional) whether to call the onComplete method before canceling
+            @example LeanTween.move( gameObject, new Vector3(0f,1f,2f), 1f); <br />
+            LeanTween.cancel( gameObject );
+        </member>
+        <member name="M:LeanTween.cancel(System.Int32)">
+            Cancel a specific tween with the provided id <summary>Cancel a specific tween with the provided id</summary>
+            
+            @method LeanTween.cancel
+            @param {int} id:int unique id that represents that tween
+            @param {bool} callOnComplete:bool (optional) whether to call the onComplete method before canceling
+            @example int id = LeanTween.move( gameObject, new Vector3(0f,1f,2f), 1f).id; <br />
+            LeanTween.cancel( id );
+        </member>
+        <member name="M:LeanTween.descr(System.Int32)">
+            Retrieve a tweens LTDescr object to modify <summary>Retrieve a tweens LTDescr object to modify</summary>
+            
+            @method LeanTween.descr
+            @param {int} id:int unique id that represents that tween
+            @example int id = LeanTween.move( gameObject, new Vector3(0f,1f,2f), 1f).setOnComplete( oldMethod ).id; <br /><br />
+            <div style="color:gray">// later I want decide I want to change onComplete method </div>
+            LTDescr descr = LeanTween.descr( id );<br />
+            if(descr!=null) <span style="color:gray">// if the tween has already finished it will come back null</span><br />
+            &#160;&#160;descr.setOnComplete( newMethod );<br />
+        </member>
+        <member name="M:LeanTween.descriptions(UnityEngine.GameObject)">
+            Retrieve a tweens LTDescr object(s) to modify <summary>Retrieve a tweens LTDescr object(s) to modifyn</summary>
+            
+            @method LeanTween.descriptions
+            @param {GameObject} id:GameObject object whose tween descriptions you want to retrieve
+            @example LeanTween.move( gameObject, new Vector3(0f,1f,2f), 1f).setOnComplete( oldMethod ); <br /><br />
+            <div style="color:gray">// later I want decide I want to change onComplete method </div>
+            LTDescr[] descr = LeanTween.descriptions( gameObject );<br />
+            if(descr.Length>0) <span style="color:gray">// make sure there is a valid description for this target</span><br />
+            &#160;&#160;descr[0].setOnComplete( newMethod );<span style="color:gray">// in this case we only ever expect there to be one tween on this object</span><br />
+        </member>
+        <member name="M:LeanTween.pause(System.Int32)">
+            Pause all tweens for a GameObject <summary>Pause all tweens for a GameObject</summary>
+            
+            @method LeanTween.pause
+            @param {int} id:int Id of the tween you want to pause
+            @example 
+            int id = LeanTween.moveX(gameObject, 5, 1.0).id<br />
+            LeanTween.pause( id );<br />
+            // Later....<br />
+            LeanTween.resume( id );
+        </member>
+        <member name="M:LeanTween.pause(UnityEngine.GameObject)">
+            Pause all tweens for a GameObject <summary>Pause all tweens for a GameObject</summary>
+            
+            @method LeanTween.pause
+            @param {GameObject} gameObject:GameObject GameObject whose tweens you want to pause
+        </member>
+        <member name="M:LeanTween.pauseAll">
+            Pause all active tweens <summary>Pause all active tweens</summary>
+            
+            @method LeanTween.pauseAll
+        </member>
+        <member name="M:LeanTween.resumeAll">
+            Resume all active tweens <summary>Resume all active tweens</summary>
+            
+            @method LeanTween.resumeAll
+        </member>
+        <member name="M:LeanTween.resume(System.Int32)">
+            Resume a specific tween <summary>Resume a specific tween</summary>
+            
+            @method LeanTween.resume
+            @param {int} id:int Id of the tween you want to resume
+            @example 
+            int id = LeanTween.moveX(gameObject, 5, 1.0).id<br />
+            LeanTween.pause( id );<br />
+            // Later....<br />
+            LeanTween.resume( id );
+        </member>
+        <member name="M:LeanTween.resume(UnityEngine.GameObject)">
+            Resume all the tweens on a GameObject <summary>Resume all the tweens on a GameObject</summary>
+            
+            @method LeanTween.resume
+            @param {GameObject} gameObject:GameObject GameObject whose tweens you want to resume
+        </member>
+        <member name="M:LeanTween.isTweening(UnityEngine.GameObject)">
+            Test whether or not a tween is active on a GameObject <summary>Test whether or not a tween is active on a GameObject</summary>
+            
+            @method LeanTween.isTweening
+            @param {GameObject} gameObject:GameObject GameObject that you want to test if it is tweening
+        </member>
+        <member name="M:LeanTween.isTweening(System.Int32)">
+            Test whether or not a tween is active or not <summary>Test whether or not a tween is active or not</summary>
+            
+            @method LeanTween.isTweening
+            @param {GameObject} id:int id of the tween that you want to test if it is tweening
+            @example
+            int id = LeanTween.moveX(gameObject, 1f, 3f).id;<br />
+            if(LeanTween.isTweening( id ))<br />
+            &#160;&#160; &#160;&#160;Debug.Log("I am tweening!");<br />
+        </member>
+        <member name="M:LeanTween.play(UnityEngine.RectTransform,UnityEngine.Sprite[])">
+            Play a sequence of images on a Unity UI Object <summary>Play a sequence of images on a Unity UI Object</summary>
+            
+            @method LeanTween.play
+            @param {RectTransform} rectTransform:RectTransform RectTransform that you want to play the sequence of sprites on
+            @param {Sprite[]} sprites:Sprite[] Sequence of sprites to be played
+            @return {LTDescr} LTDescr an object that distinguishes the tween <br />
+            @example
+            LeanTween.play(gameObject.GetComponent&lt;RectTransform&gt;(), sprites).setLoopPingPong();
+        </member>
+        <member name="M:LeanTween.alpha(UnityEngine.GameObject,System.Single,System.Single)">
+            Fade a gameobject's material to a certain alpha value. The material's shader needs to support alpha. <a href="http://owlchemylabs.com/content/">Owl labs has some excellent efficient shaders</a>. <summary>Fade a gameobject's material to a certain alpha value.</summary>
+            
+            @method LeanTween.alpha
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to fade
+            @param {float} to:float the final alpha value (0-1)
+            @param {float} time:float The time with which to fade the object
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.alpha(gameObject, 1f, 1f) .setDelay(1f);
+        </member>
+        <member name="M:LeanTween.sequence(System.Boolean)">
+            Retrieve a sequencer object where you can easily chain together tweens and methods one after another <summary>Retrieve a sequencer object where you can easily chain together tweens and methods one after another</summary>
+            
+            @method LeanTween.sequence
+            @return {LTSeq} LTSeq an object that you can add tweens, methods and time on to
+            @example
+            var seq = LeanTween.sequence();<br />
+            seq.add(1f); // delay everything one second<br />
+            seq.add( () => { // fire an event before start<br />
+            &#160;Debug.Log("I have started");<br />
+            });<br />
+            seq.add( LeanTween.move(cube1, Vector3.one * 10f, 1f) ); // do a tween<br />
+            seq.add( () => { // fire event after tween<br />
+            &#160;Debug.Log("We are done now");<br />
+            });;<br />
+        </member>
+        <member name="M:LeanTween.textAlpha(UnityEngine.RectTransform,System.Single,System.Single)">
+            Fade a Unity UI Object <summary>Fade a Unity UI Object</summary>
+            
+            @method LeanTween.alphaText
+            @param {RectTransform} rectTransform:RectTransform RectTransform associated with the Text Component you wish to fade
+            @param {float} to:float the final alpha value (0-1)
+            @param {float} time:float The time with which to fade the object
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.alphaText(gameObject.GetComponent&lt;RectTransform&gt;(), 1f, 1f) .setEase(LeanTweenType.easeInCirc);
+        </member>
+        <member name="M:LeanTween.alphaCanvas(UnityEngine.CanvasGroup,System.Single,System.Single)">
+            Fade a Unity UI Canvas Group <summary>Fade a Unity UI Canvas Group</summary>
+            
+            @method LeanTween.alphaCanvas
+            @param {RectTransform} rectTransform:RectTransform RectTransform that the CanvasGroup is attached to
+            @param {float} to:float the final alpha value (0-1)
+            @param {float} time:float The time with which to fade the object
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.alphaCanvas(gameObject.GetComponent&lt;RectTransform&gt;(), 0f, 1f) .setLoopPingPong();
+        </member>
+        <member name="M:LeanTween.alphaVertex(UnityEngine.GameObject,System.Single,System.Single)">
+                * This works by tweening the vertex colors directly.<br />  <summary>This works by tweening the vertex colors directly</summary>
+                <br />
+                Vertex-based coloring is useful because you avoid making a copy of your
+                object's material for each instance that needs a different color.<br />
+                <br />
+                A shader that supports vertex colors is required for it to work
+                (for example the shaders in Mobile/Particles/)
+                * 
+                * @method LeanTween.alphaVertex
+                * @param {GameObject} gameObject:GameObject Gameobject that you wish to alpha
+                * @param {float} to:float The alpha value you wish to tween to
+                * @param {float} time:float The time with which to delay before calling the function
+                * @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.color(UnityEngine.GameObject,UnityEngine.Color,System.Single)">
+            Change a gameobject's material to a certain color value. The material's shader needs to support color tinting. <a href="http://owlchemylabs.com/content/">Owl labs has some excellent efficient shaders</a>. <summary>Change a gameobject's material to a certain color value</summary>
+            
+            @method LeanTween.color
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to change the color
+            @param {Color} to:Color the final color value ex: Color.Red, new Color(1.0f,1.0f,0.0f,0.8f)
+            @param {float} time:float The time with which to fade the object
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.color(gameObject, Color.yellow, 1f) .setDelay(1f);
+        </member>
+        <member name="M:LeanTween.textColor(UnityEngine.RectTransform,UnityEngine.Color,System.Single)">
+            Change the color a Unity UI Object <summary>Change the color a Unity UI Object</summary>
+            
+            @method LeanTween.colorText
+            @param {RectTransform} rectTransform:RectTransform RectTransform attached to the Text Component whose color you want to change
+            @param {Color} to:Color the final alpha value ex: Color.Red, new Color(1.0f,1.0f,0.0f,0.8f)
+            @param {float} time:float The time with which to fade the object
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.colorText(gameObject.GetComponent&lt;RectTransform&gt;(), Color.yellow, 1f) .setDelay(1f);
+        </member>
+        <member name="M:LeanTween.delayedCall(UnityEngine.GameObject,System.Single,System.Action)">
+            Call a method after a specified amount of time <summary>Call a method after a specified amount of time</summary>
+            
+            @method LeanTween.delayedCall
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to associate with this delayed call
+            @param {float} time:float delay The time you wish to pass before the method is called
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.delayedCall(gameObject, 1f, ()=>{ <br />Debug.Log("I am called one second later!");<br /> }));
+        </member>
+        <member name="M:LeanTween.move(UnityEngine.GameObject,UnityEngine.Vector3,System.Single)">
+            Move a GameObject to a certain location <summary>Move a GameObject to a certain location</summary>
+            
+            @method LeanTween.move
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {Vector3} vec:Vector3 to The final positin with which to move to
+            @param {float} time:float time The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.move(gameObject, new Vector3(0f,-3f,5f), 2.0f) .setEase( LeanTweenType.easeOutQuad );
+        </member>
+        <member name="M:LeanTween.move(UnityEngine.GameObject,UnityEngine.Vector3[],System.Single)">
+            Move a GameObject along a set of bezier curves <summary>Move a GameObject along a set of bezier curves</summary>
+            
+            @method LeanTween.move
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: Point1,Handle2,Handle1,Point2,...
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Javascript:</i><br />
+            LeanTween.move(gameObject, [Vector3(0,0,0),Vector3(1,0,0),Vector3(1,0,0),Vector3(1,0,1)], 2.0) .setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br /><br />
+            <i>C#:</i><br />
+            LeanTween.move(gameObject, new Vector3[]{new Vector3(0f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,1f)}, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);;<br />
+        </member>
+        <member name="M:LeanTween.moveSpline(UnityEngine.GameObject,UnityEngine.Vector3[],System.Single)">
+            Move a GameObject through a set of points <summary>Move a GameObject through a set of points</summary>
+            
+            @method LeanTween.moveSpline
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: ControlStart,Pt1,Pt2,Pt3,.. ..ControlEnd<br />Note: The first and last item just define the angle of the end points, they are not actually used in the spline path itself. If you do not care about the angle you can jus set the first two items and last two items as the same value.
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Javascript:</i><br />
+            LeanTween.moveSpline(gameObject, [Vector3(0,0,0),Vector3(1,0,0),Vector3(1,0,0),Vector3(1,0,1)], 2.0) .setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br /><br />
+            <i>C#:</i><br />
+            LeanTween.moveSpline(gameObject, new Vector3[]{new Vector3(0f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,1f)}, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
+        </member>
+        <member name="M:LeanTween.moveSpline(UnityEngine.GameObject,LTSpline,System.Single)">
+            Move a GameObject through a set of points <summary>Move a GameObject through a set of points</summary>
+            
+            @method LeanTween.moveSpline
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {LTSpline} spline:LTSpline pass a pre-existing LTSpline for the object to move along
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Javascript:</i><br />
+            LeanTween.moveSpline(gameObject, ltSpline, 2.0) .setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br /><br />
+            <i>C#:</i><br />
+            LeanTween.moveSpline(gameObject, ltSpline, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
+        </member>
+        <member name="M:LeanTween.moveSplineLocal(UnityEngine.GameObject,UnityEngine.Vector3[],System.Single)">
+            Move a GameObject through a set of points, in local space <summary>Move a GameObject through a set of points, in local space</summary>
+            
+            @method LeanTween.moveSplineLocal
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: ControlStart,Pt1,Pt2,Pt3,.. ..ControlEnd
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Javascript:</i><br />
+            LeanTween.moveSpline(gameObject, [Vector3(0,0,0),Vector3(1,0,0),Vector3(1,0,0),Vector3(1,0,1)], 2.0) .setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br /><br />
+            <i>C#:</i><br />
+            LeanTween.moveSpline(gameObject, new Vector3[]{new Vector3(0f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,0f),new Vector3(1f,0f,1f)}, 1.5f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
+        </member>
+        <member name="M:LeanTween.moveX(UnityEngine.GameObject,System.Single,System.Single)">
+            Move a GameObject along the x-axis <summary>Move a GameObject along the x-axis</summary>
+            
+            @method LeanTween.moveX
+            @param {GameObject} gameObject:GameObject gameObject Gameobject that you wish to move
+            @param {float} to:float to The final position with which to move to
+            @param {float} time:float time The time to complete the move in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.moveY(UnityEngine.GameObject,System.Single,System.Single)">
+            Move a GameObject along the y-axis <summary>Move a GameObject along the y-axis</summary>
+            
+            @method LeanTween.moveY
+            @param {GameObject} GameObject gameObject Gameobject that you wish to move
+            @param {float} float to The final position with which to move to
+            @param {float} float time The time to complete the move in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.moveZ(UnityEngine.GameObject,System.Single,System.Single)">
+            Move a GameObject along the z-axis <summary>Move a GameObject along the z-axis</summary>
+            
+            @method LeanTween.moveZ
+            @param {GameObject} GameObject gameObject Gameobject that you wish to move
+            @param {float} float to The final position with which to move to
+            @param {float} float time The time to complete the move in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.moveLocal(UnityEngine.GameObject,UnityEngine.Vector3,System.Single)">
+            Move a GameObject to a certain location relative to the parent transform. <summary>Move a GameObject to a certain location relative to the parent transform.</summary>
+            
+            @method LeanTween.moveLocal
+            @param {GameObject} GameObject gameObject Gameobject that you wish to rotate
+            @param {Vector3} Vector3 to The final positin with which to move to
+            @param {float} float time The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.moveLocal(UnityEngine.GameObject,UnityEngine.Vector3[],System.Single)">
+            Move a GameObject along a set of bezier curves, in local space <summary>Move a GameObject along a set of bezier curves, in local space</summary>
+            
+            @method LeanTween.moveLocal
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {Vector3[]} path:Vector3[] A set of points that define the curve(s) ex: Point1,Handle1,Handle2,Point2,...
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Javascript:</i><br />
+            LeanTween.moveLocal(gameObject, [Vector3(0,0,0),Vector3(1,0,0),Vector3(1,0,0),Vector3(1,0,1)], 2.0).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br /><br />
+            <i>C#:</i><br />
+            LeanTween.moveLocal(gameObject, new Vector3[]{Vector3(0f,0f,0f),Vector3(1f,0f,0f),Vector3(1f,0f,0f),Vector3(1f,0f,1f)}).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true);<br />
+        </member>
+        <member name="M:LeanTween.move(UnityEngine.GameObject,UnityEngine.Transform,System.Single)">
+            Move a GameObject to another transform <summary>Move a GameObject to another transform</summary>
+            
+            @method LeanTween.move
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to move
+            @param {Transform} destination:Transform Transform whose position the tween will finally end on
+            @param {float} time:float time The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.move(gameObject, anotherTransform, 2.0f) .setEase( LeanTweenType.easeOutQuad );
+        </member>
+        <member name="M:LeanTween.rotate(UnityEngine.GameObject,UnityEngine.Vector3,System.Single)">
+            Rotate a GameObject, to values are in passed in degrees <summary>Rotate a GameObject, to values are in passed in degrees</summary>
+            
+            @method LeanTween.rotate
+            @param {GameObject} GameObject gameObject Gameobject that you wish to rotate
+            @param {Vector3} Vector3 to The final rotation with which to rotate to
+            @param {float} float time The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.rotate(cube, new Vector3(180f,30f,0f), 1.5f);
+        </member>
+        <member name="M:LeanTween.rotateLocal(UnityEngine.GameObject,UnityEngine.Vector3,System.Single)">
+            Rotate a GameObject in the objects local space (on the transforms localEulerAngles object) <summary>Rotate a GameObject in the objects local space (on the transforms localEulerAngles object)</summary>
+            
+            @method LeanTween.rotateLocal
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to rotate
+            @param {Vector3} to:Vector3 The final rotation with which to rotate to
+            @param {float} time:float The time to complete the rotation in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.rotateX(UnityEngine.GameObject,System.Single,System.Single)">
+            Rotate a GameObject only on the X axis <summary>Rotate a GameObject only on the X axis</summary>
+            
+            @method LeanTween.rotateX
+            @param {GameObject} GameObject Gameobject that you wish to rotate
+            @param {float} to:float The final x-axis rotation with which to rotate
+            @param {float} time:float The time to complete the rotation in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.rotateY(UnityEngine.GameObject,System.Single,System.Single)">
+            Rotate a GameObject only on the Y axis <summary>Rotate a GameObject only on the Y axis</summary>
+            
+            @method LeanTween.rotateY
+            @param {GameObject} GameObject Gameobject that you wish to rotate
+            @param {float} to:float The final y-axis rotation with which to rotate
+            @param {float} time:float The time to complete the rotation in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.rotateZ(UnityEngine.GameObject,System.Single,System.Single)">
+            Rotate a GameObject only on the Z axis <summary>Rotate a GameObject only on the Z axis</summary>
+            
+            @method LeanTween.rotateZ
+            @param {GameObject} GameObject Gameobject that you wish to rotate
+            @param {float} to:float The final z-axis rotation with which to rotate
+            @param {float} time:float The time to complete the rotation in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.rotateAround(UnityEngine.GameObject,UnityEngine.Vector3,System.Single,System.Single)">
+            Rotate a GameObject around a certain Axis (the best method to use when you want to rotate beyond 180 degrees) <summary>Rotate a GameObject around a certain Axis (the best method to use when you want to rotate beyond 180 degrees)</summary>
+            
+            @method LeanTween.rotateAround
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to rotate
+            @param {Vector3} vec:Vector3 axis in which to rotate around ex: Vector3.up
+            @param {float} degrees:float the degrees in which to rotate
+            @param {float} time:float time The time to complete the rotation in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Example:</i><br />
+            LeanTween.rotateAround ( gameObject, Vector3.left, 90f,  1f );
+        </member>
+        <member name="M:LeanTween.rotateAroundLocal(UnityEngine.GameObject,UnityEngine.Vector3,System.Single,System.Single)">
+            Rotate a GameObject around a certain Axis in Local Space (the best method to use when you want to rotate beyond 180 degrees) <summary>Rotate a GameObject around a certain Axis in Local Space (the best method to use when you want to rotate beyond 180 degrees) </summary>
+            
+            @method LeanTween.rotateAroundLocal
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to rotate
+            @param {Vector3} vec:Vector3 axis in which to rotate around ex: Vector3.up
+            @param {float} degrees:float the degrees in which to rotate
+            @param {float} time:float time The time to complete the rotation in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Example:</i><br />
+            LeanTween.rotateAround ( gameObject, Vector3.left, 90f,  1f );
+        </member>
+        <member name="M:LeanTween.scale(UnityEngine.GameObject,UnityEngine.Vector3,System.Single)">
+            Scale a GameObject to a certain size <summary>Scale a GameObject to a certain size</summary>
+            
+            @method LeanTween.scale
+            @param {GameObject} gameObject:GameObject gameObject Gameobject that you wish to scale
+            @param {Vector3} vec:Vector3 to The size with which to tween to
+            @param {float} time:float time The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.scaleX(UnityEngine.GameObject,System.Single,System.Single)">
+            Scale a GameObject to a certain size along the x-axis only <summary>Scale a GameObject to a certain size along the x-axis only</summary>
+            
+            @method LeanTween.scaleX
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to scale
+            @param {float} scaleTo:float the size with which to scale to
+            @param {float} time:float the time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.scaleY(UnityEngine.GameObject,System.Single,System.Single)">
+            Scale a GameObject to a certain size along the y-axis only <summary>Scale a GameObject to a certain size along the y-axis only</summary>
+            
+            @method LeanTween.scaleY
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to scale
+            @param {float} scaleTo:float the size with which to scale to
+            @param {float} time:float the time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.scaleZ(UnityEngine.GameObject,System.Single,System.Single)">
+            Scale a GameObject to a certain size along the z-axis only <summary>Scale a GameObject to a certain size along the z-axis only</summary>
+            
+            @method LeanTween.scaleZ
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to scale
+            @param {float} scaleTo:float the size with which to scale to
+            @param {float} time:float the time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LeanTween.value(UnityEngine.GameObject,System.Single,System.Single,System.Single)">
+            Tween any particular value (float) <summary>Tween any particular value (float)</summary>
+            
+            @method LeanTween.value (float)
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
+            @param {float} from:float The original value to start the tween from
+            @param {Vector3} to:float The final float with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Example Javascript: </i><br />
+            LeanTween.value( gameObject, 1f, 5f, 5f).setOnUpdate( function( val:float ){ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+            <br />
+            <i>Example C#: </i> <br />
+            LeanTween.value( gameObject, 1f, 5f, 5f).setOnUpdate( (float val)=>{ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+        </member>
+        <member name="M:LeanTween.value(UnityEngine.GameObject,UnityEngine.Vector2,UnityEngine.Vector2,System.Single)">
+            Tween any particular value (Vector2) 
+            
+            @method LeanTween.value (Vector2)
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
+            @param {Vector2} from:Vector2 The original value to start the tween from
+            @param {Vector3} to:Vector2 The final Vector2 with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Example Javascript: </i><br />
+            LeanTween.value( gameObject, new Vector2(1f,0f), new Vector3(5f,0f), 5f).setOnUpdate( function( val:Vector2 ){ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+            <br />
+            <i>Example C#: </i> <br />
+            LeanTween.value( gameObject, new Vector3(1f,0f), new Vector3(5f,0f), 5f).setOnUpdate( (Vector2 val)=>{ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+        </member>
+        <member name="M:LeanTween.value(UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            Tween any particular value (Vector3)
+            
+            @method LeanTween.value (Vector3)
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
+            @param {Vector3} from:Vector3 The original value to start the tween from
+            @param {Vector3} to:Vector3 The final Vector3 with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Example Javascript: </i><br />
+            LeanTween.value( gameObject, new Vector3(1f,0f,0f), new Vector3(5f,0f,0f), 5f).setOnUpdate( function( val:Vector3 ){ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+            <br />
+            <i>Example C#: </i> <br />
+            LeanTween.value( gameObject, new Vector3(1f,0f,0f), new Vector3(5f,0f,0f), 5f).setOnUpdate( (Vector3 val)=>{ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+        </member>
+        <member name="M:LeanTween.value(UnityEngine.GameObject,UnityEngine.Color,UnityEngine.Color,System.Single)">
+            Tween any particular value (Color)
+            
+            @method LeanTween.value (Color)
+            @param {GameObject} gameObject:GameObject Gameobject that you wish to attach the tween to
+            @param {Color} from:Color The original value to start the tween from
+            @param {Color} to:Color The final Color with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            <i>Example Javascript: </i><br />
+            LeanTween.value( gameObject, Color.red, Color.yellow, 5f).setOnUpdate( function( val:Color ){ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+            <br />
+            <i>Example C#: </i> <br />
+            LeanTween.value( gameObject, Color.red, Color.yellow, 5f).setOnUpdate( (Color val)=>{ <br />
+            &#160;Debug.Log("tweened val:"+val);<br />
+            } );<br />
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.value(UnityEngine.GameObject,System.Action{System.Single},System.Single,System.Single,System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.value(UnityEngine.GameObject,System.Action{System.Single,System.Single},System.Single,System.Single,System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.value(UnityEngine.GameObject,System.Action{UnityEngine.Color},UnityEngine.Color,UnityEngine.Color,System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.value(UnityEngine.GameObject,System.Action{UnityEngine.Vector2},UnityEngine.Vector2,UnityEngine.Vector2,System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.value(UnityEngine.GameObject,System.Action{UnityEngine.Vector3},UnityEngine.Vector3,UnityEngine.Vector3,System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.value(UnityEngine.GameObject,System.Action{System.Single,System.Object},System.Single,System.Single,System.Single)" -->
+        <member name="M:LeanTween.move(UnityEngine.RectTransform,UnityEngine.Vector3,System.Single)">
+            Move a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Move a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.move (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {Vector3} to:Vector3 The final Vector3 with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.move(gameObject.GetComponent&lt;RectTransform&gt;(), new Vector3(200f,-100f,0f), 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.moveX(UnityEngine.RectTransform,System.Single,System.Single)">
+            Move a RectTransform object affecting x-axis only (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Move a RectTransform object affecting x-axis only (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.moveX (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {float} to:float The final x location with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.moveX(gameObject.GetComponent&lt;RectTransform&gt;(), 200f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.moveY(UnityEngine.RectTransform,System.Single,System.Single)">
+            Move a RectTransform object affecting y-axis only (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Move a RectTransform object affecting y-axis only (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.moveY (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {float} to:float The final y location with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.moveY(gameObject.GetComponent&lt;RectTransform&gt;(), 200f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.moveZ(UnityEngine.RectTransform,System.Single,System.Single)">
+            Move a RectTransform object affecting z-axis only (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Move a RectTransform object affecting z-axis only (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)n</summary>
+            
+            @method LeanTween.moveZ (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {float} to:float The final x location with which to tween to
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.moveZ(gameObject.GetComponent&lt;RectTransform&gt;(), 200f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.rotate(UnityEngine.RectTransform,System.Single,System.Single)">
+            Rotate a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Rotate a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.rotate (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {float} to:float The degree with which to rotate the RectTransform
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.rotate(gameObject.GetComponent&lt;RectTransform&gt;(), 90f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.rotateAround(UnityEngine.RectTransform,UnityEngine.Vector3,System.Single,System.Single)">
+            Rotate a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Rotate a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.rotateAround (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {Vector3} axis:Vector3 The axis in which to rotate the RectTransform (Vector3.forward is most commonly used)
+            @param {float} to:float The degree with which to rotate the RectTransform
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.rotateAround(gameObject.GetComponent&lt;RectTransform&gt;(), Vector3.forward, 90f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.rotateAroundLocal(UnityEngine.RectTransform,UnityEngine.Vector3,System.Single,System.Single)">
+            Rotate a RectTransform object around it's local axis (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Rotate a RectTransform object around it's local axis (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.rotateAroundLocal (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {Vector3} axis:Vector3 The local axis in which to rotate the RectTransform (Vector3.forward is most commonly used)
+            @param {float} to:float The degree with which to rotate the RectTransform
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.rotateAroundLocal(gameObject.GetComponent&lt;RectTransform&gt;(), Vector3.forward, 90f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.scale(UnityEngine.RectTransform,UnityEngine.Vector3,System.Single)">
+            Scale a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Scale a RectTransform object (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.scale (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {Vector3} to:Vector3 The final Vector3 with which to tween to (localScale)
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.scale(gameObject.GetComponent&lt;RectTransform&gt;(), gameObject.GetComponent&lt;RectTransform&gt;().localScale*2f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.size(UnityEngine.RectTransform,UnityEngine.Vector2,System.Single)">
+            Change the sizeDelta of a RectTransform object (used in Unity Canvas, for Buttons, Panel, Scrollbar, etc...) <summary>Change the sizeDelta of a RectTransform object (used in Unity Canvas, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.size (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {Vector2} to:Vector2 The final Vector2 the tween will end at for sizeDelta property
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.size(gameObject.GetComponent&lt;RectTransform&gt;(), gameObject.GetComponent&lt;RectTransform&gt;().sizeDelta*2f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.alpha(UnityEngine.RectTransform,System.Single,System.Single)">
+            Alpha an Image Component attached to a RectTransform (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Alpha an Image Component attached to a RectTransform (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.alpha (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {float} to:float The final Vector3 with which to tween to (localScale)
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.alpha(gameObject.GetComponent&lt;RectTransform&gt;(), 0.5f, 1f).setDelay(1f);
+        </member>
+        <member name="M:LeanTween.color(UnityEngine.RectTransform,UnityEngine.Color,System.Single)">
+            Change the Color of an Image Component attached to a RectTransform (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...) <summary>Change the Color of an Image Component attached to a RectTransform (used in Unity GUI in 4.6+, for Buttons, Panel, Scrollbar, etc...)</summary>
+            
+            @method LeanTween.alpha (RectTransform)
+            @param {RectTransform} rectTrans:RectTransform RectTransform that you wish to attach the tween to
+            @param {float} to:float The final Vector3 with which to tween to (localScale)
+            @param {float} time:float The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example LeanTween.color(gameObject.GetComponent&lt;RectTransform&gt;(), 0.5f, 1f).setDelay(1f);
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.addListener(UnityEngine.GameObject,System.Int32,System.Action{LTEvent})" -->
+        <!-- Badly formed XML comment ignored for member "M:LeanTween.removeListener(UnityEngine.GameObject,System.Int32,System.Action{LTEvent})" -->
+        <member name="M:LeanTween.dispatchEvent(System.Int32)">
+            Tell the added listeners that you are dispatching the event
+            @method LeanTween.dispatchEvent
+            @param {int} eventId:int a unique int that describes the event (best to use an enum)
+            @example
+            LeanTween.dispatchEvent( (int)MyEvents.JUMP );<br />
+        </member>
+        <member name="M:LeanTween.dispatchEvent(System.Int32,System.Object)">
+            Tell the added listeners that you are dispatching the event
+            @method LeanTween.dispatchEvent
+            @param {int} eventId:int a unique int that describes the event (best to use an enum)
+            @param {object} data:object Pass data to the listener, access it from the listener with *.data on the LTEvent object
+            @example
+            LeanTween.dispatchEvent( (int)MyEvents.JUMP, transform );<br />
+            <br />
+            void jumpUp( LTEvent e ){<br />
+            &#160; Transform tran = (Transform)e.data;<br />
+            }<br />
+        </member>
+        <member name="T:LTBezierPath">
+            Manually animate along a bezier path with this class
+            @class LTBezierPath
+            @constructor
+            @param {Vector3 Array} pts A set of points that define one or many bezier paths (the paths should be passed in multiples of 4, which correspond to each individual bezier curve)<br />
+            It goes in the order: <strong>startPoint</strong>,endControl,startControl,<strong>endPoint</strong> - <strong>Note:</strong> the control for the end and start are reversed! This is just a *quirk* of the API.<br />
+            <img src="http://dentedpixel.com/assets/LTBezierExplanation.gif" width="413" height="196" style="margin-top:10px" />
+            @example 
+            LTBezierPath ltPath = new LTBezierPath( new Vector3[] { new Vector3(0f,0f,0f),new Vector3(1f,0f,0f), new Vector3(1f,0f,0f), new Vector3(1f,1f,0f)} );<br /><br />
+            LeanTween.move(lt, ltPath.vec3, 4.0f).setOrientToPath(true).setDelay(1f).setEase(LeanTweenType.easeInOutQuad); // animate <br />
+            Vector3 pt = ltPath.point( 0.6f ); // retrieve a point along the path
+        </member>
+        <member name="P:LTBezierPath.distance">
+            @property {float} distance distance of the path (in unity units)
+        </member>
+        <member name="M:LTBezierPath.point(System.Single)">
+            Retrieve a point along a path <summary>Move a GameObject to a certain location</summary>
+            
+            @method point
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @return {Vector3} Vector3 position of the point along the path
+            @example
+            transform.position = ltPath.point( 0.6f );
+        </member>
+        <member name="M:LTBezierPath.place(UnityEngine.Transform,System.Single)">
+            Place an object along a certain point on the path (facing the direction perpendicular to the path) <summary>Move a GameObject to a certain location</summary>
+            
+            @method place
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @example
+            ltPath.place( transform, 0.6f );
+        </member>
+        <member name="M:LTBezierPath.place(UnityEngine.Transform,System.Single,UnityEngine.Vector3)">
+            Place an object along a certain point on the path, with it facing a certain direction perpendicular to the path <summary>Move a GameObject to a certain location</summary>
+            
+            @method place
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @param {Vector3} rotation:Vector3 the direction in which to place the transform ex: Vector3.up
+            @example
+            ltPath.place( transform, 0.6f, Vector3.left );
+        </member>
+        <member name="M:LTBezierPath.placeLocal(UnityEngine.Transform,System.Single)">
+            Place an object along a certain point on the path (facing the direction perpendicular to the path) - Local Space, not world-space <summary>Move a GameObject to a certain location</summary>
+            
+            @method placeLocal
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @example
+            ltPath.placeLocal( transform, 0.6f );
+        </member>
+        <member name="M:LTBezierPath.placeLocal(UnityEngine.Transform,System.Single,UnityEngine.Vector3)">
+            Place an object along a certain point on the path, with it facing a certain direction perpendicular to the path - Local Space, not world-space <summary>Move a GameObject to a certain location</summary>
+            
+            @method placeLocal
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @param {Vector3} rotation:Vector3 the direction in which to place the transform ex: Vector3.up
+            @example
+            ltPath.placeLocal( transform, 0.6f, Vector3.left );
+        </member>
+        <member name="T:LTSpline">
+            * Animate along a set of points that need to be in the format: controlPoint, point1, point2.... pointLast, endControlPoint <summary>Move a GameObject to a certain location</summary>
+            * @class LTSpline
+            * @constructor
+            * @param {Vector3 Array} pts A set of points that define the points the path will pass through (starting with starting control point, and ending with a control point)<br />
+            <i><strong>Note:</strong> The first and last item just define the angle of the end points, they are not actually used in the spline path itself. If you do not care about the angle you can jus set the first two items and last two items as the same value.</i>
+            * @example 
+            * LTSpline ltSpline = new LTSpline( new Vector3[] { new Vector3(0f,0f,0f),new Vector3(0f,0f,0f), new Vector3(0f,0.5f,0f), new Vector3(1f,1f,0f), new Vector3(1f,1f,0f)} );<br /><br />
+            * LeanTween.moveSpline(lt, ltSpline.vec3, 4.0f).setOrientToPath(true).setDelay(1f).setEase(LeanTweenType.easeInOutQuad); // animate <br />
+            * Vector3 pt = ltSpline.point( 0.6f ); // retrieve a point along the path
+        </member>
+        <member name="F:LTSpline.distance">
+            @property {float} distance distance of the spline (in unity units)
+        </member>
+        <member name="M:LTSpline.ratioAtPoint(UnityEngine.Vector3)">
+            Retrieve a point along a path <summary>Move a GameObject to a certain location</summary>
+            
+            @method ratioAtPoint
+            @param {Vector3} point:Vector3 given a current location it makes the best approximiation of where it is along the path ratio-wise (0-1)
+            @return {float} float of ratio along the path
+            @example
+            ratioIter = ltSpline.ratioAtPoint( transform.position );
+        </member>
+        <member name="M:LTSpline.point(System.Single)">
+            Retrieve a point along a path <summary>Move a GameObject to a certain location</summary>
+            
+            @method point
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @return {Vector3} Vector3 position of the point along the path
+            @example
+            transform.position = ltSpline.point( 0.6f );
+        </member>
+        <member name="M:LTSpline.place(UnityEngine.Transform,System.Single)">
+            Place an object along a certain point on the path (facing the direction perpendicular to the path) <summary>Move a GameObject to a certain location</summary>
+            
+            @method place
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @example
+            ltPath.place( transform, 0.6f );
+        </member>
+        <member name="M:LTSpline.place(UnityEngine.Transform,System.Single,UnityEngine.Vector3)">
+            Place an object along a certain point on the path, with it facing a certain direction perpendicular to the path <summary>Move a GameObject to a certain location</summary>
+            
+            @method place
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @param {Vector3} rotation:Vector3 the direction in which to place the transform ex: Vector3.up
+            @example
+            ltPath.place( transform, 0.6f, Vector3.left );
+        </member>
+        <member name="M:LTSpline.placeLocal(UnityEngine.Transform,System.Single)">
+            Place an object along a certain point on the path (facing the direction perpendicular to the path) - Local Space, not world-space <summary>Move a GameObject to a certain location</summary>
+            
+            @method placeLocal
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @example
+            ltPath.placeLocal( transform, 0.6f );
+        </member>
+        <member name="M:LTSpline.placeLocal(UnityEngine.Transform,System.Single,UnityEngine.Vector3)">
+            Place an object along a certain point on the path, with it facing a certain direction perpendicular to the path - Local Space, not world-space <summary>Move a GameObject to a certain location</summary>
+            
+            @method placeLocal
+            @param {Transform} transform:Transform the transform of the object you wish to place along the path
+            @param {float} ratio:float ratio of the point along the path you wish to receive (0-1)
+            @param {Vector3} rotation:Vector3 the direction in which to place the transform ex: Vector3.up
+            @example
+            ltPath.placeLocal( transform, 0.6f, Vector3.left );
+        </member>
+        <member name="T:LTRect">
+             Animate GUI Elements by creating this object and passing the *.rect variable to the GUI method<br /><br />
+             <strong>Example Javascript: </strong><br />var bRect:LTRect = new LTRect( 0, 0, 100, 50 );<br />
+             LeanTween.scale( bRect, Vector2(bRect.rect.width, bRect.rect.height) * 1.3, 0.25 );<br />
+             function OnGUI(){<br />
+             &#160; if(GUI.Button(bRect.rect, "Scale")){ }<br />
+             }<br />
+             <br />
+             <strong>Example C#: </strong> <br />
+             LTRect bRect = new LTRect( 0f, 0f, 100f, 50f );<br />
+             LeanTween.scale( bRect, new Vector2(150f,75f), 0.25f );<br />
+             void OnGUI(){<br />
+             &#160; if(GUI.Button(bRect.rect, "Scale")){ }<br />
+             }<br />
+            
+             @class LTRect
+             @constructor
+             @param {float} x:float X location
+             @param {float} y:float Y location
+             @param {float} width:float Width
+             @param {float} height:float Height
+             @param {float} alpha:float (Optional) initial alpha amount (0-1)
+             @param {float} rotation:float (Optional) initial rotation in degrees (0-360) 
+        </member>
+        <member name="F:LTRect._rect">
+            Pass this value to the GUI Methods
+            
+            @property rect
+            @type {Rect} rect:Rect Rect object that controls the positioning and size
+        </member>
+        <member name="T:LTEvent">
+            Object that describes the event to an event listener
+            @class LTEvent
+            @constructor
+            @param {object} data:object Data that has been passed from the dispatchEvent method
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:LTDescr" -->
+        <member name="M:LTDescr.updateNow">
+            If you need a tween to happen immediately instead of waiting for the next Update call, you can force it with this method
+            
+            @method updateNow
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 0f ).updateNow();
+        </member>
+        <member name="M:LTDescr.pause">
+            Pause a tween
+            
+            @method pause
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LTDescr.resume">
+            Resume a paused tween
+            
+            @method resume
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+        </member>
+        <member name="M:LTDescr.setAxis(UnityEngine.Vector3)">
+            Set Axis optional axis for tweens where it is relevant
+            
+            @method setAxis
+            @param {Vector3} axis either the tween rotates around, or the direction it faces in the case of setOrientToPath
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.move( ltLogo, path, 1.0f ).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true).setAxis(Vector3.forward);
+        </member>
+        <member name="M:LTDescr.setDelay(System.Single)">
+            Delay the start of a tween
+            
+            @method setDelay
+            @param {float} float time The time to complete the tween in
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setDelay( 1.5f );
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setEase(LeanTweenType)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOvershoot(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setPeriod(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setScale(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setEase(UnityEngine.AnimationCurve)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setTo(UnityEngine.Vector3)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setFrom(UnityEngine.Vector3)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setPassed(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setTime(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setSpeed(System.Single)" -->
+        <member name="M:LTDescr.setRepeat(System.Int32)">
+            Set the tween to repeat a number of times.
+            @method setRepeat
+            @param {int} repeatNum:int the number of times to repeat the tween. -1 to repeat infinite times
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setRepeat( 10 ).setLoopPingPong();
+        </member>
+        <member name="M:LTDescr.setIgnoreTimeScale(System.Boolean)">
+            Set ignore time scale when tweening an object when you want the animation to be time-scale independent (ignores the Time.timeScale value). Great for pause screens, when you want all other action to be stopped (or slowed down)
+            @method setIgnoreTimeScale
+            @param {bool} useUnScaledTime:bool whether to use the unscaled time or not
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setRepeat( 2 ).setIgnoreTimeScale( true );
+        </member>
+        <member name="M:LTDescr.setUseFrames(System.Boolean)">
+            Use frames when tweening an object, when you don't want the animation to be time-frame independent...
+            @method setUseFrames
+            @param {bool} useFrames:bool whether to use estimated time or not
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setRepeat( 2 ).setUseFrames( true );
+        </member>
+        <member name="M:LTDescr.setLoopOnce">
+            No looping involved, just run once (the default)
+            @method setLoopOnce
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setLoopOnce();
+        </member>
+        <member name="M:LTDescr.setLoopClamp">
+            When the animation gets to the end it starts back at where it began
+            @method setLoopClamp
+            @param {int} loops:int (defaults to -1) how many times you want the loop to happen (-1 for an infinite number of times)
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setLoopClamp( 2 );
+        </member>
+        <member name="M:LTDescr.setLoopPingPong">
+            When the animation gets to the end it then tweens back to where it started (and on, and on)
+            @method setLoopPingPong
+            @param {int} loops:int (defaults to -1) how many times you want the loop to happen in both directions (-1 for an infinite number of times). Passing a value of 1 will cause the object to go towards and back from it's destination once.
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setLoopPingPong( 2 );
+        </member>
+        <member name="M:LTDescr.setOnComplete(System.Action)">
+            Have a method called when the tween finishes
+            @method setOnComplete
+            @param {Action} onComplete:Action the method that should be called when the tween is finished ex: tweenFinished(){ }
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.moveX(gameObject, 5f, 2.0f ).setOnComplete( tweenFinished );
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnComplete(System.Action{System.Object})" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnCompleteParam(System.Object)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnUpdate(System.Action{System.Single})" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnUpdate(System.Action{System.Single,System.Object},System.Object)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnUpdate(System.Action{UnityEngine.Vector3},System.Object)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnUpdateParam(System.Object)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOrientToPath(System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOrientToPath2d(System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setPoint(UnityEngine.Vector3)" -->
+        <member name="M:LTDescr.setOnCompleteOnRepeat(System.Boolean)">
+            Set the onComplete method to be called at the end of every loop cycle (also applies to the delayedCall method)
+            @method setOnCompleteOnRepeat
+            @param {bool} isOn:bool does call onComplete on every loop cycle
+            @return {LTDescr} LTDescr an object that distinguishes the tween
+            @example
+            LeanTween.delayedCall(gameObject,0.3f, delayedMethod).setRepeat(4).setOnCompleteOnRepeat(true);
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnCompleteOnStart(System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setOnStart(System.Action)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setDirection(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTDescr.setRecursive(System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "T:LTSeq" -->
+        <!-- Badly formed XML comment ignored for member "M:LTSeq.append(System.Single)" -->
+        <!-- Badly formed XML comment ignored for member "M:LTSeq.append(LTDescr)" -->
+        <member name="F:Margin.left">
+            <summary>
+            pivot.x 0-1
+            </summary>
+        </member>
+        <member name="F:Margin.down">
+            <summary>
+            pivot.y 0-1
+            </summary>
+        </member>
+        <member name="F:Margin.right">
+            <summary>
+            size.x
+            </summary>
+        </member>
+        <member name="F:Margin.top">
+            <summary>
+            size.y
+            </summary>
+        </member>
+        <member name="M:Margin.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="l"></param>
+            <param name="r"></param>
+            <param name="d"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:Scale.ScreenStretchRatio">
+            <summary>
+            对屏幕进行等比例覆盖
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.ScreenFillRatio">
+            <summary>
+            对屏幕进行等比例填充
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.FillRatio(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            将目标填充到固定框中
+            </summary>
+            <param name="fill"></param>
+            <param name="border"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.ScreenFillHorizontal">
+            <summary>
+            按屏幕宽度比例缩放
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.ScreenFillVertical">
+            <summary>
+            按屏幕高度比例缩放
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.ScreenFillHorizontalHigh">
+            <summary>
+            获取按屏幕宽度比例填充时的实际像素高度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.ScreenFill">
+            <summary>
+            按屏幕填充，比例会拉伸
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scale.DockUp(UnityEngine.Transform,System.Single)">
+            <summary>
+            控件进行ScreenFillHorizontal函数后使用此函数
+            </summary>
+            <param name="target"></param>
+            <param name="high"></param>
+        </member>
+        <member name="M:Scale.DockDown(UnityEngine.Transform,System.Single)">
+            <summary>
+            控件进行ScreenFillHorizontal函数后使用此函数
+            </summary>
+            <param name="target"></param>
+            <param name="high"></param>
+        </member>
+        <member name="M:Scale.DockCenter(UnityEngine.RectTransform,System.Single,System.Single)">
+            <summary>
+            控件进行ScreenFillHorizontal函数后使用此函数
+            </summary>
+            <param name="target"></param>
+            <param name="high"></param>
+        </member>
+        <member name="M:Scale.DockCenter(UnityEngine.RectTransform,System.Single,System.Single,System.Single)">
+            <summary>
+            控件进行ScreenFillHorizontal函数后使用此函数,有宽度要求的时候
+            </summary>
+            <param name="target"></param>
+            <param name="high"></param>
+        </member>
+        <member name="M:Scale.DockCenter(UnityEngine.RectTransform,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            控件进行ScreenFillHorizontal函数后使用此函数
+            </summary>
+            <param name="target"></param>
+            <param name="high"></param>
+        </member>
+        <member name="M:Scale.GetActulPixels(System.Single)">
+            <summary>
+            获取按水平缩放后实际像素高度
+            </summary>
+        </member>
+        <member name="M:UGUI.CustomRawImage.Reset(System.Boolean)">
+            <summary>
+            重置顶点
+            </summary>
+        </member>
+        <member name="F:UGUI.CustomText.UVRect.uv0">
+            <summary>
+            左下
+            </summary>
+        </member>
+        <member name="F:UGUI.CustomText.UVRect.uv1">
+            <summary>
+            左上
+            </summary>
+        </member>
+        <member name="F:UGUI.CustomText.UVRect.uv2">
+            <summary>
+            右下
+            </summary>
+        </member>
+        <member name="F:UGUI.CustomText.UVRect.uv3">
+            <summary>
+            右上
+            </summary>
+        </member>
+        <member name="F:UGUI.CustomText.UVRect.Scale">
+            <summary>
+            比例
+            </summary>
+        </member>
+        <member name="M:Page.ReleasePopWindow">
+            <summary>
+            释放掉当前未激活的弹窗
+            </summary>
+        </member>
+    </members>
+</doc>
