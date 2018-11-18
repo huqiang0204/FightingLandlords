@@ -118,7 +118,6 @@ namespace huqiang.Data
         float Time;
         void DispatchEx(byte[] data, UInt32 tag, object obj)
         {
-            tag >>= 24;
             byte type = (byte)tag;
             switch (type)
             {
