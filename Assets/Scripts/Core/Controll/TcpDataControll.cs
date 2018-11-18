@@ -178,31 +178,19 @@ namespace huqiang.Data
         }
         void DispatchStream(DataBuffer buffer)
         {
-            var fake = buffer.fakeStruct;
-            if (fake != null)
-            {
-                switch (fake[Req.Type])
-                {
-                    case MessageType.Def:
-                        break;
-                    case MessageType.Rpc:
-                        break;
-                    case MessageType.Query:
-                        break;
-                }
-            }
+            Page.CurrentPage.Cmd(buffer);
         }
         bool SendAesJson(byte[] dat )
         {
             return socket.SendMessage(dat, EnvelopeType.AesJson); 
         }
-        bool SendStream(DataBuffer db)
+        public bool SendStream(DataBuffer db)
         {
             return socket.SendMessage(db.ToBytes(), EnvelopeType.DataBuffer);
         }
-        bool SendAesStream(DataBuffer db)
+        public bool SendAesStream(DataBuffer db)
         {
-            return socket.SendMessage(JavaAES.Instance.Encrypt(db.ToBytes()),EnvelopeType.AesDataBuffer);
+            return socket.SendMessage(AES.Instance.Encrypt(db.ToBytes()),EnvelopeType.AesDataBuffer);
         }
         public void Close()
         {
@@ -347,4 +335,5 @@ namespace huqiang.Data
         public const string Type_Empty = "def";
         public const string Type_Query = "query";
     }
+
 }

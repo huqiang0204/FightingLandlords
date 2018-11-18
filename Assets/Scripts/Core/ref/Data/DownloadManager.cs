@@ -22,6 +22,7 @@ namespace huqiang.Data
                     mis.err = (int)mis.webRequest.responseCode;
                     if (mis.webRequest.isDone)
                     {
+                        mis.result = mis.webRequest.downloadHandler.data;
                         Mission.RemoveAt(c);
                         if (mis.OnDone != null)
                             mis.OnDone(mis);

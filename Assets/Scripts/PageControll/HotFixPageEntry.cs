@@ -12,8 +12,7 @@ public class HotFixPageEntry : Page
     IlRuntime runtime;
     public override void Initial(Transform parent, object dat = null)
     {
-        var dll = Resources.Load<TextAsset>("Hotfix").bytes;
-        runtime = new IlRuntime(dll, null, parent as RectTransform);
+        runtime = new IlRuntime(dat as byte[], null, parent as RectTransform);
     }
     public override void Cmd(DataBuffer dat)
     {
