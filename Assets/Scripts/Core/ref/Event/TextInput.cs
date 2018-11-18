@@ -432,7 +432,7 @@ namespace huqiang
                                     var tmp = IME.CurrentCompStr();
                                     InputEvent.InputNewString(tmp);
 #else
-                                    InputEvent.InputNewString(str);
+                                    InputEvent.InputNewString(tmp);
 #endif
                                 }
                             }

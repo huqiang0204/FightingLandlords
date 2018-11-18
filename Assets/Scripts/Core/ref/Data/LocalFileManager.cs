@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace huqiang.Data
 {
-    public  class LocalFileManager
+    public class LocalFileManager
     {
         static string persistentDataPath = Application.persistentDataPath;
         static FileStream CreateFile(string type, string name)
@@ -75,7 +75,7 @@ namespace huqiang.Data
             }
             return null;
         }
-        static string FindAssetBundle(string name)
+        public static string FindAssetBundle(string name)
         {
             string path = persistentDataPath + "\\bundle";
             if(Directory.Exists(path))
@@ -92,6 +92,21 @@ namespace huqiang.Data
             }
             return null;
         }
+
+        public static byte[] LoadFile(string name)
+        {
+            string path= FindAssetBundle(name);
+            if(path!=null)
+            {
+                var fs = File.Open(path,FileMode.Open);
+                byte[] buf = new byte[fs.Length];
+                fs.Read(buf,0,buf.Length);
+                fs.Dispose();
+                return buf;
+            }
+            return null;
+        }
+
         static void DeleteAssetBundle(string name)
         {
             string path = persistentDataPath + "\\bundle";
@@ -115,13 +130,15 @@ namespace huqiang.Data
             if (name == null | name == "")
                 return 0;
             var str= FindAssetBundle(name);
+            if (str == null)
+                return 0;
             int v = 0;
             var ss = str.Split('_');
             if (ss.Length > 1)
                 int.TryParse(ss[1],out v);
             return v;
         }
-        static void SaveAssetBundle(string name, int version, byte[] data)
+        public static void SaveAssetBundle(string name, int version, byte[] data)
         {
             string path = persistentDataPath + "\\bundle";
             if (Directory.Exists(path))
