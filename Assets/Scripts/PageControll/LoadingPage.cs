@@ -3,6 +3,7 @@ using huqiang.Data;
 using huqiang.UIModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -69,12 +70,20 @@ public class LoadingPage:Page
         }
         else
         {
+#if UNITY_EDITOR
+            var fs = File.Open("", FileMode.Open);
+            byte[] buf = new byte[fs.Length];
+            fs.Read(buf, 0, buf.Length);
+            fs.Dispose();
+            ModelManager.LoadModels(buf, "hotui");
+            LoadPage<HotFixPageEntry>();
+#else
             dll = LocalFileManager.LoadFile("HotfixDll");
             ui = LocalFileManager.LoadFile("HotfixUI");
             dll = AES.Decrypt(dll, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
-            //ui = AES.Decrypt(ui, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
             ModelManager.LoadModels(ui, "hotui");
             LoadPage<HotFixPageEntry>(dll);
+#endif
         }    
     }
 
