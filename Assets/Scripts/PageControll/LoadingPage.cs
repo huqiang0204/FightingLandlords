@@ -40,7 +40,7 @@ public class LoadingPage:Page
                 break;
             case 1:
                 Debug.Log(fake.GetData(Req.Args) as string);
-                DownLoad(fake.GetData(Req.Args) as string);
+                DownLoad(fake.GetData(Req.Args) as string, fake.GetData(Req.Length) as string);
                 break;
             default:
                 break;
@@ -57,7 +57,7 @@ public class LoadingPage:Page
     public void CheckVersions(int vers)
     {
         Versions = vers;
-        int v = LocalFileManager.GetBundleVersion("ModuleHotdixDev");
+        int v = LocalFileManager.GetBundleVersion("HotfixDll");
         if (v < vers)
         {
             DataBuffer db = new DataBuffer();
@@ -69,18 +69,47 @@ public class LoadingPage:Page
         }
         else
         {
-            LoadPage<HotFixPageEntry>(LocalFileManager.LoadFile("ModuleHotdixDev"));
-        }  
+            dll = LocalFileManager.LoadFile("HotfixDll");
+            ui = LocalFileManager.LoadFile("HotfixUI");
+            dll = AES.Decrypt(dll, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
+            //ui = AES.Decrypt(ui, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
+            ModelManager.LoadModels(ui, "hotui");
+            LoadPage<HotFixPageEntry>(dll);
+        }    
     }
 
-    public void DownLoad(string url)
+    public void DownLoad(string url, string uiurl)
     {
-        DownloadManager.DownloadAsset("dll", "ModuleHotdixDev", url, null, DownLoadCallBack, Versions);
+        DownloadManager.DownloadAsset("dll", "HotfixDll", url, null, DownLoadCallBack, Versions);
+        DownloadManager.DownloadAsset("ui", "HotfixUI", uiurl, null, DownLoadCallBack, Versions);
     }
 
+    byte[] dll, ui;
     public void DownLoadCallBack(DownLoadMission mission)
     {
-        LocalFileManager.SaveAssetBundle("ModuleHotdixDev", Versions, mission.result);
-        LoadPage<HotFixPageEntry>(mission.result);
+        if (mission.cmd == "dll")
+        {
+            dll = mission.result;
+            LocalFileManager.SaveAssetBundle("HotfixDll", Versions, mission.result);
+            if (ui != null)
+            {
+                dll= AES.Decrypt(dll, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
+                //ui = AES.Decrypt(ui, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
+                ModelManager.LoadModels(ui,"hotui");
+                LoadPage<HotFixPageEntry>(dll);
+            }
+        }
+        else
+        {
+            ui = mission.result;
+            LocalFileManager.SaveAssetBundle("HotfixUI", Versions, mission.result);
+            if (dll != null)
+            {
+                dll = AES.Decrypt(dll, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
+                //ui = AES.Decrypt(ui, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
+                ModelManager.LoadModels(ui, "hotui");
+                LoadPage<HotFixPageEntry>(dll);
+            }
+        }
     }
 }

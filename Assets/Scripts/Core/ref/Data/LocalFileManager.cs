@@ -95,9 +95,10 @@ namespace huqiang.Data
 
         public static byte[] LoadFile(string name)
         {
-            string path= FindAssetBundle(name);
-            if(path!=null)
+            string fullname= FindAssetBundle(name);
+            if(fullname!=null)
             {
+               string path =  persistentDataPath + "\\bundle\\" + fullname;
                 var fs = File.Open(path,FileMode.Open);
                 byte[] buf = new byte[fs.Length];
                 fs.Read(buf,0,buf.Length);
