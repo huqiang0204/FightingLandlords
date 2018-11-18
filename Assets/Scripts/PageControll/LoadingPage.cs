@@ -70,8 +70,7 @@ public class LoadingPage:Page
         else
         {
             LoadPage<HotFixPageEntry>(LocalFileManager.LoadFile("ModuleHotdixDev"));
-        }    
-
+        }  
     }
 
     public void DownLoad(string url)
