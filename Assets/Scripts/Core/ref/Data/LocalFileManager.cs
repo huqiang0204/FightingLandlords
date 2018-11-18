@@ -78,6 +78,7 @@ namespace huqiang.Data
         public static string FindAssetBundle(string name)
         {
             string path = persistentDataPath + "\\bundle";
+            Debug.Log(path);
             if(Directory.Exists(path))
             {
                 var files= Directory.GetFiles(path);
