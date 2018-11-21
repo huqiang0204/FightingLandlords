@@ -1456,6 +1456,37 @@ namespace huqiang
             result.z = v * fInvDet;
             return true;
         }
+
+        /// <summary>
+        /// 两个向量的投影
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <param name="onNormal"></param>
+        /// <returns></returns>
+        public static Vector3 Project(Vector3 vector, Vector3 onNormal)
+        {
+            float num = Vector3.Dot(onNormal, onNormal);
+            if (num < 1.17549435E-38f)
+            {
+                return Vector3.zero;
+            }
+            return onNormal * Vector3.Dot(vector, onNormal) / num;
+        }
+        /// <summary>
+        /// 两个向量的投影
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <param name="onNormal"></param>
+        /// <returns></returns>
+        public static Vector2 Project(Vector2 vector, Vector2 onNormal)
+        {
+            float num = Vector2.Dot(onNormal, onNormal);
+            if (num < 1.17549435E-38f)
+            {
+                return Vector2.zero;
+            }
+            return onNormal * Vector2.Dot(vector, onNormal) / num;
+        }
     }
     /// <summary>
     /// 表示一个复数
