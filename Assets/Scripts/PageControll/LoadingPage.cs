@@ -70,13 +70,20 @@ public class LoadingPage:Page
         }
         else
         {
-#if !UNITY_EDITOR
-            var fs = File.Open("", FileMode.Open);
+#if UNITY_EDITOR
+            string path=  Application.dataPath+ "/AssetsBundle/HotUI.bytes";
+            var fs = File.Open(path, FileMode.Open);
             byte[] buf = new byte[fs.Length];
             fs.Read(buf, 0, buf.Length);
             fs.Dispose();
             ModelManager.LoadModels(buf, "hotui");
-            LoadPage<HotFixPageEntry>();
+
+            fs = File.Open(@"H:\SelfWork\HotFixGame\HotFixGame\bin\Debug\HotFixGame.dll", FileMode.Open);
+            byte[] dll = new byte[fs.Length];
+            fs.Read(dll, 0, dll.Length);
+            fs.Dispose();
+
+            LoadPage<HotFixPageEntry>(dll);
 #else
             dll = LocalFileManager.LoadFile("HotfixDll");
             ui = LocalFileManager.LoadFile("HotfixUI");

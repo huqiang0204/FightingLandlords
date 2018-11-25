@@ -12,15 +12,7 @@ public class HotFixPageEntry : Page
     IlRuntime runtime;
     public override void Initial(Transform parent, object dat = null)
     {
-#if !UNITY_EDITOR
-        var fs = File.Open("", FileMode.Open);
-        byte[] buf = new byte[fs.Length];
-        fs.Read(buf, 0, buf.Length);
-        fs.Dispose();
-        runtime = new IlRuntime(buf, null, parent as RectTransform);
-#else
         runtime = new IlRuntime(dat as byte[], null, parent as RectTransform);
-#endif
     }
     public override void Cmd(DataBuffer dat)
     {
