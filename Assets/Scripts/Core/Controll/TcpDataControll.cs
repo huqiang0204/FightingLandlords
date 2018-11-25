@@ -85,12 +85,22 @@ namespace huqiang.Data
                 return false;
             }
         }
+        string UniId;
         public void Connection(string ip,int port)
         {
+            UniId = SystemInfo.deviceUniqueIdentifier;
             var address = IPAddress.Parse(ip);
             socket = new TcpSocket(262144,PackType.Part);
             socket.Connected = () =>
             {
+                DataBuffer db = new DataBuffer();
+                var fake = new FakeStruct(db,Req.Length);
+                fake[Req.Cmd] = 0;
+                fake[Req.Type] = MessageType.Rpc;
+                fake.SetData(Req.Args, UniId);
+                db.fakeStruct = fake;
+
+                SendAesStream(db);
             };
             socket.ConnectServer(address, port);
 

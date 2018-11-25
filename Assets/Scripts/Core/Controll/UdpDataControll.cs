@@ -9,8 +9,9 @@ namespace huqiang.Data
     {
         public const Int32 Cmd = 0;
         public const Int32 Type = 1;
-        public const Int32 Args = 2;
-        public const Int32 Length = 3;
+        public const Int32 Error = 2;
+        public const Int32 Args = 3;
+        public const Int32 Length = 4;
     }
     public class MessageType
     {

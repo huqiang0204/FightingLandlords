@@ -70,7 +70,7 @@ public class LoadingPage:Page
         }
         else
         {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
             var fs = File.Open("", FileMode.Open);
             byte[] buf = new byte[fs.Length];
             fs.Read(buf, 0, buf.Length);
