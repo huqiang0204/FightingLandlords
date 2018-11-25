@@ -207,14 +207,14 @@ namespace huqiang
             }
         }
         bool auto = true;
-        Action<byte[], UInt32,object> a_Dispatch;
+        Action<byte[], byte,object> a_Dispatch;
         /// <summary>
         /// 设置消息派发函数
         /// </summary>
         /// <param name="DispatchMessage"></param>
         /// <param name="autodispatch">true由socket本身的线程进行派发，false为手动派发，请使用update函数</param>
         /// <param name="buff_size">手动派发时，缓存消息的队列大小,默认最小为32</param>
-        public void SetDispatchMethod(Action<byte[], UInt32,object> DispatchMessage, bool autodispatch = true)
+        public void SetDispatchMethod(Action<byte[], byte ,object> DispatchMessage, bool autodispatch = true)
         {
             a_Dispatch = DispatchMessage;
             auto = autodispatch;

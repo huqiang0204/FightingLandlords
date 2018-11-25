@@ -94,7 +94,7 @@ namespace huqiang.Data
             };
             socket.ConnectServer(address, port);
 
-            socket.SetDispatchMethod(DispatchEx, false, 32);
+            socket.SetDispatchMethod(DispatchEx, false);
             socket.ConnectFaild = (o) => {
                 Debug.Log("连接失败");
             };
@@ -116,9 +116,9 @@ namespace huqiang.Data
             }
         }
         float Time;
-        void DispatchEx(byte[] data, UInt32 tag, object obj)
+        void DispatchEx(byte[] data, byte tag, object obj)
         {
-            byte type = (byte)tag;
+            byte type = tag;
             switch (type)
             {
                 case EnvelopeType.Mate:

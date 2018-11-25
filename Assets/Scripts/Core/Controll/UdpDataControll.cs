@@ -69,7 +69,7 @@ namespace huqiang.Data
                 socket.Dispatch();
             }
         }
-        void DispatchEx(byte[] data, UInt32 tag, IPEndPoint ip)
+        void DispatchEx(byte[] data, byte tag, IPEndPoint ip)
         {
             var s = tag;
             byte type = (byte)tag;
