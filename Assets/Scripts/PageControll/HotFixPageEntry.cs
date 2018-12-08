@@ -12,7 +12,7 @@ public class HotFixPageEntry : Page
     IlRuntime runtime;
     public override void Initial(Transform parent, object dat = null)
     {
-        runtime = new IlRuntime(dat as byte[], null, parent as RectTransform);
+        runtime = new IlRuntime(dat as byte[], parent as RectTransform);
     }
     public override void Cmd(DataBuffer dat)
     {
@@ -37,7 +37,7 @@ public class IlRuntime
     IMethod Update;
     IMethod Cmd;
     IMethod Resize;
-    public IlRuntime(byte[] dat, AssetBundle asset, RectTransform uiRoot)
+    public IlRuntime(byte[] dat,  RectTransform uiRoot)
     {
         _app = new ILRuntime.Runtime.Enviorment.AppDomain();
         RegDelegate();
@@ -51,7 +51,7 @@ public class IlRuntime
         {
             try
             {
-                _app.Invoke(mainScript.FullName, start.Name, mainScript, asset, uiRoot);
+                _app.Invoke(mainScript.FullName, start.Name, mainScript,  uiRoot);
             }
             catch (Exception ex)
             {
