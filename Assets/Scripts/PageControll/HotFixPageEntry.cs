@@ -68,8 +68,8 @@ public class IlRuntime
         _app.DelegateManager.RegisterMethodDelegate<ScrollItem, GameObject> ();
         _app.DelegateManager.RegisterMethodDelegate<EventCallBack , UserAction> ();
         _app.DelegateManager.RegisterMethodDelegate<EventCallBack>();
-        _app.DelegateManager.RegisterMethodDelegate< EventCallBack ,Vector2 > ();
-        _app.DelegateManager.RegisterMethodDelegate< EventCallBack, UserAction , Vector2> ();
+        _app.DelegateManager.RegisterMethodDelegate<EventCallBack ,Vector2 > ();
+        _app.DelegateManager.RegisterMethodDelegate<EventCallBack, UserAction , Vector2> ();
         _app.DelegateManager.RegisterMethodDelegate<TextInput>();
         _app.DelegateManager.RegisterMethodDelegate<TextInput ,UserAction> ();
         _app.DelegateManager.RegisterMethodDelegate<GestureEvent>();
