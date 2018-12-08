@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace huqiang
+namespace huqiang.Data
 {
     public struct Box
     {
