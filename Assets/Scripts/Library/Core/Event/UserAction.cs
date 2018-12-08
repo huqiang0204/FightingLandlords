@@ -14,7 +14,7 @@ namespace huqiang
             OnlyMouse, OnlyTouch, Blend
         }
         public static InputType inputType = InputType.OnlyMouse;
-        public int Id { get;private set; }
+        public int Id { get; private set; }
         public Vector2 CanPosition;
         public Vector2 Position;
         public Vector2 Motion;
@@ -31,7 +31,7 @@ namespace huqiang
         public float azimuthAngle { get; private set; }
         public float radius { get; set; }
         public float radiusVariance { get; set; }
-        public float PressTime { get; private set;}
+        public float PressTime { get; private set; }
         public static float Accelerationtime = 60;
         public long EventTicks { get; private set; }
         Vector3[] FramePos = new Vector3[16];
@@ -55,8 +55,11 @@ namespace huqiang
             LastFocus.Clear();
             MultiFocus.Clear();
             IsLeftButtonDown = false;
+            IsRightButtonPressed = false;
             isPressed = false;
             IsLeftButtonUp = false;
+            IsRightButtonUp = false;
+            IsRightButtonUp = false;
             IsMoved = false;
             FingerStationary = false;
         }
@@ -98,7 +101,7 @@ namespace huqiang
             }
             else m_Velocities = Vector2.zero;
         }
-        void LoadFinger(ref Touch touch)
+        public void LoadFinger(ref Touch touch)
         {
             Id = touch.fingerId;
             switch (touch.phase)
@@ -168,14 +171,6 @@ namespace huqiang
             radius = touch.radius;
             radiusVariance = touch.radiusVariance;
         }
-        void ReleaseFinger()
-        {
-            IsLeftButtonDown = false;
-            isPressed = false;
-            IsLeftButtonUp = true;
-            IsMoved = false;
-            FingerStationary = false;
-        }
         public void LoadMouse()
         {
             IsActive = true;
@@ -190,8 +185,8 @@ namespace huqiang
             IsRightButtonUp = Input.GetMouseButtonUp(1);
             IsMiddleButtonUp = Input.GetMouseButtonUp(2);
             isPressed = Input.GetMouseButton(0);
-            IsRightPressed= Input.GetMouseButton(1);
-            IsMiddlePressed= Input.GetMouseButton(2);
+            IsRightPressed = Input.GetMouseButton(1);
+            IsMiddlePressed = Input.GetMouseButton(2);
             if (IsLeftButtonDown)
             {
                 EventTicks = DateTime.Now.Ticks;
@@ -211,7 +206,7 @@ namespace huqiang
             Motion.y = y - Position.y;
             if (Motion.y != 0)
             {
-                IsMoved= true;
+                IsMoved = true;
             }
             Position.y = y;
             x = Screen.width;
@@ -230,7 +225,7 @@ namespace huqiang
         }
         void Dispatch()
         {
-            if (IsLeftButtonDown)
+            if (IsLeftButtonDown | IsRightButtonPressed | IsMiddleButtonPressed)
             {
                 List<EventCallBack> tmp = MultiFocus;
                 LastFocus.Clear();
@@ -238,7 +233,7 @@ namespace huqiang
                 LastFocus = tmp;
             }
             EventCallBack.DispatchEvent(this);
-            if (IsLeftButtonDown)
+            if (IsLeftButtonDown | IsRightButtonPressed | IsMiddleButtonPressed)
             {
                 for (int i = 0; i < LastFocus.Count; i++)
                 {
@@ -253,7 +248,7 @@ namespace huqiang
                     label2:;
                 }
             }
-            else if (IsLeftButtonUp)
+            else if (IsLeftButtonUp | IsRightButtonUp | IsMiddleButtonUp)
             {
                 for (int i = 0; i < MultiFocus.Count; i++)
                 {
@@ -265,15 +260,15 @@ namespace huqiang
             else
             {
                 for (int i = 0; i < MultiFocus.Count; i++)
-                     MultiFocus[i].OnFocusMove(this);
+                    MultiFocus[i].OnFocusMove(this);
             }
-            if(IsMouseWheel)
+            if (IsMouseWheel)
             {
                 for (int i = 0; i < MultiFocus.Count; i++)
                 {
                     var f = MultiFocus[i];
                     if (f.MouseWheel != null)
-                        f.MouseWheel(f,this);
+                        f.MouseWheel(f, this);
                 }
             }
             CheckMouseLeave();
@@ -285,20 +280,20 @@ namespace huqiang
             if (inputs == null)
                 return null;
             if (id > inputs.Length)
-                return inputs[inputs.Length-1];
+                return inputs[inputs.Length - 1];
             if (id < 0)
                 return inputs[0];
             return inputs[id];
         }
         static void DispatchTouch()
         {
-            if(inputs==null)
+            if (inputs == null)
             {
                 inputs = new UserAction[10];
                 for (int i = 0; i < 10; i++)
                     inputs[i] = new UserAction(i);
             }
-            for(int i=0;i<10;i++)
+            for (int i = 0; i < 10; i++)
             {
                 try
                 {
@@ -309,16 +304,8 @@ namespace huqiang
                 }
                 catch (Exception ex)
                 {
-                    if(inputs[i].isPressed)
-                    {
-                        inputs[i].ReleaseFinger();
-                        inputs[i].Dispatch();
-                    }
-                    else
-                    {
-                        inputs[i].isPressed = false;
-                        inputs[i].IsActive = false;
-                    }
+                    inputs[i].isPressed = false;
+                    inputs[i].IsActive = false;
                 }
             }
         }
@@ -354,16 +341,8 @@ namespace huqiang
                 }
                 catch (Exception ex)
                 {
-                    if (inputs[i].isPressed)
-                    {
-                        inputs[i].ReleaseFinger();
-                        inputs[i].Dispatch();
-                    }
-                    else
-                    {
-                        inputs[i].isPressed = false;
-                        inputs[i].IsActive = false;
-                    }
+                    inputs[i].IsActive = false;
+                    inputs[i].isPressed = false;
                 }
             }
             if (!finger)
@@ -390,14 +369,13 @@ namespace huqiang
                 DispatchWin();
             }
             TextInputEvent.Dispatch();
-            TextInput.Dispatch();
             GestureEvent.Dispatch(new List<UserAction>(inputs));
         }
         public static void ClearAll()
         {
-            if(inputs!=null)
-            for (int i = 0; i < inputs.Length; i++)
-                inputs[i].Clear();
+            if (inputs != null)
+                for (int i = 0; i < inputs.Length; i++)
+                    inputs[i].Clear();
         }
         void CheckMouseLeave()
         {
@@ -412,7 +390,7 @@ namespace huqiang
                             goto label;
                     }
                     eve.OnMouseLeave(this);
-                    label:;
+                label:;
                 }
             }
             List<EventCallBack> tmp = LastEntry;

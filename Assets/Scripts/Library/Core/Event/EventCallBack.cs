@@ -130,29 +130,18 @@ namespace huqiang
                     if (h < MinBox.y)
                         h = MinBox.y;
                 }
-                if (callBack.IsCircular)
-                {
-                    float x = action.CanPosition.x - o.x;
-                    float y = action.CanPosition.y - o.y;
-                    w *= 0.5f;
-                    if (x * x + y * y < w * w)
-                        inside = true;
-                }
-                else
-                {
-                    float x1 = 0.5f * w;
-                    float x0 = -x1;
-                    float y1 = 0.5f * h;
-                    float y0 = -y1;
+                float x1 = 0.5f * w;
+                float x0 = -x1;
+                float y1 = 0.5f * h;
+                float y0 = -y1;
 
-                    var v = action.CanPosition;
-                    var Rectangular = callBack.Rectangular;
-                    Rectangular[0] = q * new Vector3(x0, y0) + o;
-                    Rectangular[1] = q * new Vector3(x0, y1) + o;
-                    Rectangular[2] = q * new Vector3(x1, y1) + o;
-                    Rectangular[3] = q * new Vector3(x1, y0) + o;
-                    inside = MathH.DotToPolygon(Rectangular, v);
-                }
+                var v = action.CanPosition;
+                var Rectangular = callBack.Rectangular;
+                Rectangular[0] = q * new Vector3(x0, y0) + o;
+                Rectangular[1] = q * new Vector3(x0, y1) + o;
+                Rectangular[2] = q * new Vector3(x1, y1) + o;
+                Rectangular[3] = q * new Vector3(x1, y0) + o;
+                inside = Physics2D.DotToPolygon(Rectangular, v);
                 if (inside)
                 {
                     action.CurrentEntry.Add(callBack);
@@ -168,12 +157,12 @@ namespace huqiang
                             return true;
                         }
                     }
-                    if (action.IsLeftButtonDown)
+                    if (action.IsLeftButtonDown | action.IsRightButtonPressed | action.IsMiddleButtonPressed)
                     {
                         callBack.Pressed = true;
                         callBack.OnMouseDown(action);
                     }
-                    else if (action.IsLeftButtonUp)
+                    else if (action.IsLeftButtonUp | action.IsRightButtonUp | action.IsMiddleButtonUp)
                     {
                         if (callBack.Pressed)
                             callBack.OnMouseUp(action);
@@ -208,9 +197,7 @@ namespace huqiang
         static void DuringSlide(EventCallBack back)
         {
             if (back.mVelocity.x == 0 & back.mVelocity.y == 0)
-            {
                 return;
-            }
             back.xTime += UserAction.TimeSlice;
             back.yTime += UserAction.TimeSlice;
             float x = 0, y = 0;
@@ -421,7 +408,6 @@ namespace huqiang
         float lastY;
         Vector2 maxVelocity;
         Vector2 sDistance;
-        public bool IsCircular = false;
         public float ScrollDistanceX
         {
             get { return sDistance.x; }

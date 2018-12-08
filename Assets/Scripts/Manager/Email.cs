@@ -75,7 +75,7 @@ public class Email
         string smtp = "smtp.qq.com";
         //(如果发送不成功, 那么改成: smtp.exmail.qq.com 这里改成foxmail的服务器)
         string from = "huqiang1990@outlook.com";
-        string pwd = "hu7406053";
+        string pwd = "test";
         string to = "651726047@qq.com";
         string title = "哈哈";
         string body = "嘿嘿";
