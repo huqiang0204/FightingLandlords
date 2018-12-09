@@ -45,7 +45,7 @@ public class MainScript : MonoBehaviour {
         App.InitialScene(uiRoot,buffRoot);
         ModelManager.LoadModels(baseUI.bytes,"baseUI");
         Page.LoadPage<LoadingPage>();
-        TcpDataControll.Instance.Connection("192.168.0.196",6666);
+        TcpDataControll.Instance.Connection("192.168.31.34",6666);
     }
     // Update is called once per frame
     void Update () {
