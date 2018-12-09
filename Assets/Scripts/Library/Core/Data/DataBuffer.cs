@@ -307,12 +307,13 @@ namespace huqiang.Data
                         return to.ToBytes();
                     return null;
                 }
+               
                 return Encoding.UTF8.GetBytes(str);
             }
         }
         public byte[] GetBytes(int index)
         {
-            return GetBytes(buff[index]);
+            return GetBytes(buff[index].obj);
         }
         public byte[] ToBytes()
         {
@@ -333,7 +334,7 @@ namespace huqiang.Data
             Int32 offset = 0;
             for (int i = 0; i < max; i++)
             {
-                var buf = GetBytes(i);
+                var buf = GetBytes(buff[i].obj);
                 table.Write(buff[i].rc.ToBytes(), 0, 2);//引用计数
                 table.Write(buff[i].type.ToBytes(), 0, 2);//数据类型
                 table.Write(buff[i].size.ToBytes(), 0, 4);//数据结构体长度
