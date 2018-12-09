@@ -33,12 +33,14 @@ public class Email
         smtpClient.Host = smtp;
         smtpClient.EnableSsl = true;
         ServicePointManager.ServerCertificateValidationCallback = (a,b,c,d) => { return true; };
-      //指定服务器认证
-       NetworkCredential network = new NetworkCredential(from, pwd);
-        network = network.GetCredential(from, 25,"TLS");
+        //指定服务器认证
+        CredentialCache cc = new CredentialCache();
         //指定发件人信息,包括邮箱地址和密码
-        //NetworkCredential nc = new NetworkCredential(from, pwd);
-        smtpClient.Credentials =network; //这个在手机平台不成功
+        NetworkCredential network = new NetworkCredential(from, pwd);
+        cc.Add(new Uri(from), "TLS",network);
+        //network = network.GetCredential(from, 25,"TLS");
+        
+        smtpClient.Credentials =cc; //这个在手机平台不成功
         //指定如何发送邮件
         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
         smtpClient.UseDefaultCredentials = false;
