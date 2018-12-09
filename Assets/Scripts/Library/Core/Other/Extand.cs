@@ -101,30 +101,6 @@ namespace huqiang
                 raw.SetNativeSize();
             }
         }
-        /// <summary>
-        /// 计算三角形法线
-        /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="c"></param>
-        /// <returns></returns>
-        public static Vector3 GetTriangleNormal(Vector3 a, Vector3 b, Vector3 c)
-        {
-            var ab = Vector3.zero;
-            ab.x = a.x - b.x;
-            ab.y = a.y - b.y;
-            ab.z = a.z - b.z;
-            var bc = Vector3.zero;
-            bc.x = b.x - c.x;
-            bc.y = b.y - c.y;
-            bc.z = b.z - c.z;
-            //然后计算法线，即另一个向量。求该对象的法向量（norm）。下面的代码用于计算向量ab和bc的外积：
-            var nor = Vector3.zero;
-            nor.x = (ab.y * bc.z) - (ab.z * bc.y);
-            nor.y = -((ab.x * bc.z) - (ab.z * bc.x));
-            nor.z = (ab.x * bc.y) - (ab.y * bc.x);
-            return nor;
-        }
         public static T Clone<T>(this T obj) where T : class, new()
         {
             if (obj != null)

@@ -12,15 +12,7 @@ public class HotFixPageEntry : Page
     IlRuntime runtime;
     public override void Initial(Transform parent, object dat = null)
     {
-#if UNITY_EDITOR
-        var fs = File.Open("", FileMode.Open);
-        byte[] buf = new byte[fs.Length];
-        fs.Read(buf, 0, buf.Length);
-        fs.Dispose();
-        runtime = new IlRuntime(buf, null, parent as RectTransform);
-#else
-        runtime = new IlRuntime(dat as byte[], null, parent as RectTransform);
-#endif
+        runtime = new IlRuntime(dat as byte[], parent as RectTransform);
     }
     public override void Cmd(DataBuffer dat)
     {
@@ -45,7 +37,7 @@ public class IlRuntime
     IMethod Update;
     IMethod Cmd;
     IMethod Resize;
-    public IlRuntime(byte[] dat, AssetBundle asset, RectTransform uiRoot)
+    public IlRuntime(byte[] dat,  RectTransform uiRoot)
     {
         _app = new ILRuntime.Runtime.Enviorment.AppDomain();
         RegDelegate();
@@ -59,7 +51,7 @@ public class IlRuntime
         {
             try
             {
-                _app.Invoke(mainScript.FullName, start.Name, mainScript, asset, uiRoot);
+                _app.Invoke(mainScript.FullName, start.Name, mainScript,  uiRoot);
             }
             catch (Exception ex)
             {
@@ -76,8 +68,8 @@ public class IlRuntime
         _app.DelegateManager.RegisterMethodDelegate<ScrollItem, GameObject> ();
         _app.DelegateManager.RegisterMethodDelegate<EventCallBack , UserAction> ();
         _app.DelegateManager.RegisterMethodDelegate<EventCallBack>();
-        _app.DelegateManager.RegisterMethodDelegate< EventCallBack ,Vector2 > ();
-        _app.DelegateManager.RegisterMethodDelegate< EventCallBack, UserAction , Vector2> ();
+        _app.DelegateManager.RegisterMethodDelegate<EventCallBack ,Vector2 > ();
+        _app.DelegateManager.RegisterMethodDelegate<EventCallBack, UserAction , Vector2> ();
         _app.DelegateManager.RegisterMethodDelegate<TextInput>();
         _app.DelegateManager.RegisterMethodDelegate<TextInput ,UserAction> ();
         _app.DelegateManager.RegisterMethodDelegate<GestureEvent>();
