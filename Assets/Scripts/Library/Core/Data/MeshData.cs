@@ -237,6 +237,14 @@ namespace huqiang.Data
             if (child != null)
                 WriteChild(stream, child);
         }
+        public void WriteToFile(string path)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+            var fs = File.Create(path);
+            WriteToStream(fs);
+            fs.Dispose();
+        }
         unsafe static void WriteCoordinate(Stream stream, Coordinate* coordinate)
         {
             var tmp = ((Int32)DataType.Coordinate).ToBytes();
