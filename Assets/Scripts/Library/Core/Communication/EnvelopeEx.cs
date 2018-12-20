@@ -428,8 +428,8 @@ namespace huqiang
                                     data.tag = (byte)(pool[i].head.Tag>>24);
                                     pool[i].head.Tag = 0;
                                     datas.Add(data);
+                                    return datas;
                                 }
-                                return datas;
                             }
                         }
                         pool[s].head = item.head;
