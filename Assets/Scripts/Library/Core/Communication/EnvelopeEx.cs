@@ -428,8 +428,8 @@ namespace huqiang
                                     data.tag = (byte)(pool[i].head.Tag>>24);
                                     pool[i].head.Tag = 0;
                                     datas.Add(data);
-                                    return datas;
                                 }
+                                goto label;
                             }
                         }
                         pool[s].head = item.head;
@@ -445,6 +445,7 @@ namespace huqiang
                         data.tag = (byte)(item.head.Tag>>24);
                         datas.Add(data);
                     }
+                label:;
                 }
                 return datas;
             }
