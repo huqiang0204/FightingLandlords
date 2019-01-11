@@ -18,9 +18,8 @@ namespace huqiang
         bool running;
         bool auto;
         Queue<SocData> queue;
-        public UdpSocket(int port, IPEndPoint remote, bool subThread = true, PackType type = PackType.All, int es = 262144)
+        public UdpSocket(int port, IPEndPoint remote, bool subThread = true, PackType type = PackType.Total, int es = 262144)
         {
-           
             endPoint = remote;
             //Links = new Linker[thread * 1024];
             soc = new UdpClient(port);

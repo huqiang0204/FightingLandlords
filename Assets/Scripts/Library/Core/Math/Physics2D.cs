@@ -10,6 +10,51 @@ namespace huqiang
     {
         #region collision check
         /// <summary>
+        /// 检查点在弧形里面
+        /// </summary>
+        /// <param name="ori">弧形圆心</param>
+        /// <param name="r">弧形半径</param>
+        /// <param name="direct">弧形方向,0-360角度</param>
+        /// <param name="scope">弧形范围0-180角度</param>
+        /// <param name="dot">点</param>
+        public static bool DotToArc(Vector2 ori, float r, float direct, float scope, Vector2 dot)
+        {
+            r *= r;
+            float dx = dot.x - ori.x;
+            float d = dx * dx;
+            float dy = dot.y - ori.y;
+            d += dy * dy;
+            if (d < r)//在半径内
+            {
+                float ta = MathH.atan(dx, dy);
+                float a = direct - scope;
+                if (ta == a)
+                    return true;
+                float b = direct + scope;
+                if (ta == b)
+                    return true;
+                if (a < 0)
+                {
+                    if (ta < b)
+                        return true;
+                    a += 360;
+                    if (ta > a)
+                        return true;
+                }
+                else if (b > 360)
+                {
+                    if (ta > a)
+                        return true;
+                    b -= 360;
+                    if (ta < b)
+                        return true;
+                }
+                else if (ta > a & ta < b)
+                    return true;
+            }
+            return false;
+        }
+        /// <summary>
         /// 检查点在椭圆里面
         /// </summary>
         /// <param name="ell_location"></param>
