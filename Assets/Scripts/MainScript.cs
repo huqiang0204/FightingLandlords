@@ -36,20 +36,17 @@ public class MainScript : MonoBehaviour {
     public TextAsset baseUI;
     //public MovieTexture cg;
     public static MainScript Instance;
-    public float AllTime=0;
     public RectTransform uiRoot;
-    public RectTransform buffRoot;
 	// Use this for initialization
 	void Awake () {
         App.InitialBase();
-        App.InitialScene(uiRoot,buffRoot);
+        App.InitialScene(uiRoot);
         ModelManager.LoadModels(baseUI.bytes,"baseUI");
         Page.LoadPage<LoadingPage>();
         TcpDataControll.Instance.Connection("192.168.31.34",6666);
     }
     // Update is called once per frame
     void Update () {
-        //UdpDataControll.Instance.DispatchMessage();
         TcpDataControll.Instance.DispatchMessage();
         App.Update();
     }

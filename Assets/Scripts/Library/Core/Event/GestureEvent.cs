@@ -94,7 +94,7 @@ namespace huqiang
             lastActions = new List<UserAction>();
             actions = new List<UserAction>();
         }
-        protected override void OnMouseDown(UserAction action)
+        public override void OnMouseDown(UserAction action)
         {
             if (!action.MultiFocus.Contains(this))
                 action.MultiFocus.Add(this);

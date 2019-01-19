@@ -558,7 +558,7 @@ namespace huqiang
             SelectTriAngle = new List<int>();
         }
 
-        protected override void OnMouseDown(UserAction action)
+        public override void OnMouseDown(UserAction action)
         {
             if (TextCom != null)
             {

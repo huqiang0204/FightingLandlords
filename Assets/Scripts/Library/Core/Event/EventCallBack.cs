@@ -159,7 +159,6 @@ namespace huqiang
                     }
                     if (action.IsLeftButtonDown | action.IsRightButtonPressed | action.IsMiddleButtonPressed)
                     {
-                        callBack.Pressed = true;
                         callBack.OnMouseDown(action);
                     }
                     else if (action.IsLeftButtonUp | action.IsRightButtonUp | action.IsMiddleButtonUp)
@@ -547,7 +546,7 @@ namespace huqiang
         {
             Rectangular = new Vector3[4];
         }
-        protected virtual void OnMouseDown(UserAction action)
+        public virtual void OnMouseDown(UserAction action)
         {
             if (!action.MultiFocus.Contains(this))
                 action.MultiFocus.Add(this);
@@ -563,6 +562,7 @@ namespace huqiang
                     graphic.color = a;
                 }
             }
+            Pressed = true;
             pressTime = action.EventTicks;
             RawPosition = action.CanPosition;
             if (PointerDown != null)

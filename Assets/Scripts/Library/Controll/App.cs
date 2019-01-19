@@ -22,15 +22,13 @@ namespace huqiang
 #endif
         }
         static RectTransform UIRoot;
-        public static void InitialScene(RectTransform uiRoot,RectTransform buffRoot)
+        public static void InitialScene(RectTransform uiRoot)
         {
             UIRoot = uiRoot;
             Page.Root = uiRoot;
-            if(buffRoot!=null)
-            {
-                buffRoot.gameObject.SetActive(false);
-                ModelManager.CycleBuffer = buffRoot;
-            }
+            var buff= new GameObject("buffer",typeof(Canvas));
+            buff.SetActive(false);
+            ModelManager.CycleBuffer = buff.transform;
             EventCallBack.MinBox = new Vector2(80, 80);
             EventCallBack.InsertRoot(uiRoot.root as RectTransform);
         }

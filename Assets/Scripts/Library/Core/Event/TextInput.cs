@@ -199,7 +199,7 @@ namespace huqiang
         }
         public Text TextCom { get; private set; }
         Vector3 Point;
-        protected override void OnMouseDown(UserAction action)
+        public override void OnMouseDown(UserAction action)
         {
             if (TextCom != null)
             {
