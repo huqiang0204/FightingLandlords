@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UGUI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -154,6 +155,15 @@ namespace huqiang.UIModel
         {
             base.Save(tar);
             Save(tar, ref this.textAttribute);
+        }
+    }
+    public class EmojiTextElement : TextElement
+    {
+        public override void Load(GameObject tar)
+        {
+            base.Load(tar);
+            var mat = tar.GetComponent<Graphic>().material;
+            mat.SetTexture("_emoji",EmojiText.Emoji);
         }
     }
 }

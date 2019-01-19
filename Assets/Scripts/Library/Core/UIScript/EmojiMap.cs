@@ -43,7 +43,9 @@ namespace UGUI
             public UInt64 ex;
             public CharUV uv;
         }
+
 #if UNITY_EDITOR
+        #region
         static void CalculUV(Rect sr, float w, float h, ref CharUV uv)
         {
             float x = sr.x;
@@ -428,7 +430,7 @@ namespace UGUI
                 }
             }
         }
-
+        #endregion
 #endif
         static int m_len = 0;
         static int[] partLen;

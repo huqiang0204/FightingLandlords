@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.PageControll;
+using huqiang;
 using huqiang.Data;
 using huqiang.UIModel;
 using System;
@@ -13,6 +14,7 @@ public class LoadingPage:Page
 {
     class LoadingView
     {
+        public EventCallBack bg;
         public Text tips;
     }
     LoadingView view;
@@ -51,6 +53,7 @@ public class LoadingPage:Page
     public void InitialUI()
     {
         view.tips.text = "正在连接服务器。。。。。。";
+        view.bg.Click = (o, e) => { EmojiInput.ShowInput(null); };
     }
 
     int Versions;

@@ -239,7 +239,7 @@ namespace huqiang.UIModel
             RegModel(() => { return new RawImageElement(); }, ResetRawImage, 32, typeof(RectTransform), typeof(RawImage));
             RegModel(() => { return new RawImageElement(); }, ResetRawImage, 32, typeof(RectTransform), typeof(CustomRawImage));
             RegModel(() => { return new ViewportElement(); }, ResetImage, 32, typeof(RectTransform), typeof(Image), typeof(Mask));
-            RegModel(() => { return new TextElement(); }, ResetText, 32, typeof(RectTransform), typeof(EmojiText));
+            RegModel(() => { return new EmojiTextElement(); }, null, 32, typeof(RectTransform), typeof(EmojiText));
         }
         static void ResetText(GameObject game)
         {

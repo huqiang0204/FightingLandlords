@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UGUI;
-//using huqiang.UIModel;
 using UnityEngine;
 using UnityEngine.UI;
 

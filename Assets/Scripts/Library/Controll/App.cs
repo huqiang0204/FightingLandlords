@@ -1,5 +1,6 @@
 ﻿using huqiang.Data;
 using huqiang.UIModel;
+using UGUI;
 using UnityEngine;
 
 namespace huqiang
@@ -14,6 +15,7 @@ namespace huqiang
             MathH.Inital();
             ThreadPool.Initial();
             TextElement.fonts.Add(Font.CreateDynamicFontFromOSFont("Arial", 16));
+            EmojiText.Emoji = Resources.Load<Texture2D>("emoji");
             ModelManager.Initial();
 #if UNITY_EDITOR || UNITY_STANDALONE_WIN
             UserAction.inputType = UserAction.InputType.Blend;
