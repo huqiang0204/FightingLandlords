@@ -179,5 +179,43 @@ namespace huqiang
                 offset++;
             }
         }
+        public static Vector2 Move(this Vector2 v, float len)
+        {
+            if (v.x == 0 & v.y == 0)
+                return v;
+            float sx = v.x * v.x + v.y * v.y;
+            float r = Mathf.Sqrt(len * len / sx);
+            return new Vector2(v.x * r, v.y * r);
+        }
+        public static Vector3 Move(this Vector3 v, float len)
+        {
+            if (v.x == 0 & v.y == 0 & v.z == 0)
+                return v;
+            float sx = v.x * v.x + v.y * v.y + v.z * v.z;
+            float r = Mathf.Sqrt(len * len / sx);
+            return new Vector3(v.x * r, v.y * r, v.z * r);
+        }
+        public static void Play(this GameObject go)
+        {
+            go.SetActive(false);
+        }
+
+        public static void Play(this Image img, Sprite[] sprites, float inter = 16, Action<ImageAnimat> over = null, bool hide = true)
+        {
+            if (img == null)
+                return;
+            img.gameObject.SetActive(true);
+            var ani = AnimationManage.Manage.FindAni<ImageAnimat>((o) => { return o.image == img ? true : false; });
+            if (ani == null)
+            {
+                ani = new ImageAnimat(img);
+                ani.autoHide = hide;
+                if (over == null)
+                    ani.PlayOver = (o) => { o.Dispose(); };
+                else ani.PlayOver = over;
+                ani.Interval = inter;
+            }
+            ani.Play(sprites);
+        }
     }
 }

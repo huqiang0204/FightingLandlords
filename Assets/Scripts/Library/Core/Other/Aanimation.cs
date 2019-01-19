@@ -215,6 +215,23 @@ namespace huqiang
         {
             droc.Add(animat);
         }
+        public T FindAni<T>(Func<T, bool> equl) where T : class, AnimatInterface
+        {
+            for (int i = 0; i < Actions.Count; i++)
+            {
+                var ani = Actions[i];
+                if (ani is T)
+                {
+                    if (equl != null)
+                    {
+                        if (equl(ani as T))
+                            return ani as T;
+                    }
+                    else return ani as T;
+                }
+            }
+            return null;
+        }
     }
     /// <summary>
     /// 动画类型，用于基本动画
@@ -904,7 +921,7 @@ namespace huqiang
     }
     public class ImageAnimat : AnimatInterface
     {
-        Image image;
+        public Image image { get; private set; }
         public ImageAnimat(Image img)
         {
             image = img;
@@ -917,7 +934,7 @@ namespace huqiang
             if (gif != null)
             {
                 sprites = gif;
-                image.sprite=sprites[0];
+                image.sprite = sprites[0];
                 image.SetNativeSize();
                 Playing = true;
             }
@@ -929,9 +946,9 @@ namespace huqiang
         public void Stop()
         {
             Playing = false;
-            if(image!=null)
+            if (image != null)
             {
-                if(sprites!=null)
+                if (sprites != null)
                 {
                     image.sprite = sprites[0];
                     image.SetNativeSize();
@@ -943,7 +960,8 @@ namespace huqiang
         bool Playing;
         float lifetime = 0;
         int index = 0;
-        public float Interval=100;
+        public float Interval = 100;
+        public bool autoHide;
         public void Update(float time)
         {
             if (Playing)
@@ -957,7 +975,7 @@ namespace huqiang
                         if (Loop)
                         {
                             lifetime = 0;
-                            image.sprite= sprites[0];
+                            image.sprite = sprites[0];
                             image.SetNativeSize();
                         }
                         else
@@ -977,6 +995,8 @@ namespace huqiang
         }
         public void Dispose()
         {
+            if (autoHide)
+                image.gameObject.SetActive(false);
             AnimationManage.Manage.ReleaseAnimat(this);
         }
     }
