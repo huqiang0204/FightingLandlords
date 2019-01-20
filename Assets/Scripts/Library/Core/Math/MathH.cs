@@ -345,7 +345,7 @@ namespace huqiang
             bc.x = b.x - c.x;
             bc.y = b.y - c.y;
             bc.z = b.z - c.z;
-            //然后计算法线，即另一个向量。求该对象的法向量（norm）。下面的代码用于计算向量ab和bc的外积：
+            //然后计算法线，即另一个向量。求该对象的法向量（norm）。下面的代码用于计算向量ab和bc的外积：叉乘
             var nor = Vector3.zero;
             nor.x = (ab.y * bc.z) - (ab.z * bc.y);
             nor.y = -((ab.x * bc.z) - (ab.z * bc.x));

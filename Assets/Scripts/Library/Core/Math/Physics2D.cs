@@ -134,17 +134,17 @@ namespace huqiang
             }
             return temp;
         }
-        public static bool DotToPolygon(Vector2 origion, Vector2[] A, Vector2 B)//offset
+        public static bool DotToPolygon(Vector2 origin, Vector2[] A, Vector2 B)//offset
         {
             int count = 0;
             for (int i = 0; i < A.Length; i++)
             {
                 Vector2 p1 = A[i];
-                p1.x += origion.x;
-                p1.y += origion.y;
+                p1.x += origin.x;
+                p1.y += origin.y;
                 Vector2 p2 = i == A.Length - 1 ? A[0] : A[i + 1];
-                p2.x += origion.x;
-                p2.y += origion.y;
+                p2.x += origin.x;
+                p2.y += origin.y;
                 if (B.y >= p1.y & B.y <= p2.y | B.y >= p2.y & B.y <= p1.y)
                 {
                     float t = (B.y - p1.y) / (p2.y - p1.y);
@@ -157,25 +157,6 @@ namespace huqiang
             }
             return count % 2 > 0 ? true : false;
         }
-        //public static bool DotToPolygon(Vector2[] A, Vector2 B)//rotate
-        //{
-        //    int count = 0;
-        //    for (int i = 0; i < A.Length; i++)
-        //    {
-        //        Vector2 p1 = A[i];
-        //        Vector2 p2 = i == A.Length - 1 ? A[0] : A[i + 1];
-        //        if (B.y >= p1.y & B.y <= p2.y | B.y >= p2.y & B.y <= p1.y)
-        //        {
-        //            float t = (B.y - p1.y) / (p2.y - p1.y);
-        //            float xt = p1.x + t * (p2.x - p1.x);
-        //            if (B.x == xt)
-        //                return true;
-        //            if (B.x < xt)
-        //                count++;
-        //        }
-        //    }
-        //    return count % 2 > 0 ? true : false;
-        //}
         public static bool CircleToCircle(Vector2 A, Vector2 B, float radiusA, float radiusB)
         {
             return radiusA + radiusB > Mathf.Sqrt((A.x - B.x) * (A.x - B.x) + (A.y - B.y) * (A.y - B.y));
@@ -292,6 +273,12 @@ namespace huqiang
 
             return 0;
         }
+        /// <summary>
+        /// 多边形与多边形相交
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static bool PToP2(Vector2[] A, Vector2[] B)
         {
             //Cos A=(b²+c²-a²)/2bc
@@ -387,6 +374,13 @@ namespace huqiang
             }
             return true;
         }
+        /// <summary>
+        /// 多边形与多边形相交
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public static bool PToP2A(Vector2[] A, Vector2[] B, ref Vector3 location)
         {
             //formule
@@ -468,6 +462,14 @@ namespace huqiang
             }
             return false;
         }
+        /// <summary>
+        /// 多边形与多边形相交
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="la"></param>
+        /// <param name="lb"></param>
+        /// <returns></returns>
         public static bool PToP2A(Vector2[] A, Vector2[] B, ref Vector3 la, ref Vector3 lb)
         {
             //formule
@@ -559,6 +561,12 @@ namespace huqiang
             }
             return re;
         }
+        /// <summary>
+        /// 多边形与多边形相交
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static bool PToP3(Vector3[] A, Vector3[] B)
         {
             //Cos A=(b²+c²-a²)/2bc
@@ -654,6 +662,12 @@ namespace huqiang
             }
             return true;
         }
+        /// <summary>
+        /// 三角形和多边形相交
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static bool TriangleToPolygon(Vector2[] A, Vector2[] B)
         {
             Vector2[] a = new Vector2[3]
@@ -716,6 +730,13 @@ namespace huqiang
             again++;
             goto label1;
         }
+        /// <summary>
+        /// 圆与多边形相交
+        /// </summary>
+        /// <param name="C"></param>
+        /// <param name="r"></param>
+        /// <param name="P"></param>
+        /// <returns></returns>
         public static bool CircleToPolygon(Vector2 C, float r, Vector2[] P)
         {
             Vector2 A = new Vector2();
@@ -785,6 +806,14 @@ namespace huqiang
             }
             return DotToPolygon(P, new Vector2(C.x, C.y));//circle inside polygon
         }
+        /// <summary>
+        /// 圆与线相交
+        /// </summary>
+        /// <param name="C"></param>
+        /// <param name="r"></param>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static bool CircleToLine(Vector2 C, float r, Vector2 A, Vector2 B)
         {
             float vx1 = C.x - A.x;
@@ -814,6 +843,14 @@ namespace huqiang
             }
             return (C.x - x0) * (C.x - x0) + (C.y - y0) * (C.y - y0) <= r * r;
         }
+        /// <summary>
+        /// 圆与线相交
+        /// </summary>
+        /// <param name="C"></param>
+        /// <param name="r"></param>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
         public static bool CircleToLineA(Vector2 C, float r, Vector2 A, Vector2 B)
         {
             r *= r;
@@ -846,6 +883,121 @@ namespace huqiang
             if (c - y <= r)
                 return true;
             return false;
+        }
+        /// <summary>
+        /// 检测一个点是否在线段上
+        /// </summary>
+        /// <param name="dot">点</param>
+        /// <param name="a">线段起点</param>
+        /// <param name="b">线段终点</param>
+        /// <returns></returns>
+        public static bool DotToLine(ref Vector2 dot, ref Vector2 a,ref Vector2 b)
+        {
+            float dx = dot.x - a.x;
+            float dy = dot.y - a.y;
+            float bx = b.x - a.x;
+            float by = b.y - a.y;
+            if (dx / dy != bx / by)
+                return false;
+            if (dx == bx)
+                return true;
+            float r = dx / bx;
+            if (r > 0 & r < 1)
+                return true;
+            return false;
+        }
+        /// <summary>
+        /// 线与垂直线相交
+        /// </summary>
+        ///  <param name="c"></param>
+        /// <param name="d"></param>
+        /// <param name="va">垂直线点a</param>
+        /// <param name="vb">垂直线点b</param>
+        /// <returns></returns>
+        public static bool LineToVerticalLine(ref Vector2 c, ref Vector2 d, ref Vector2 va, ref Vector2 vb, ref Vector2 o)//注意垂直线自底向上
+        {
+            Vector2 VB = new Vector2();
+            VB.x = d.x - c.x;
+            if (VB.x == 0)//垂直所以平行
+                return false;
+            VB.y = d.y - c.y;
+            float x = (va.x - c.x) / VB.x;
+            if (x >= 0 & x <= 1)
+            {
+                float y = VB.y * x + c.y;
+                if (y >= va.y & y <= vb.y)
+                {
+                    o.x = va.x;
+                    o.y = y;
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// 求两条线段是否相交点,并得出相交点
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <param name="d"></param>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static bool LineToLine(ref Vector2 a, ref Vector2 b, ref Vector2 c, ref Vector2 d, ref Vector2 o)//相交线相交点
+        {
+            float ax = b.x - a.x;
+            float ay = b.y - a.y;
+            float cx = d.x - c.x;
+            float cy = d.y - c.y;
+            //(V1.y*V2.x-V1.x*V2.y)
+            float y = ay * cx - ax * cy;
+            if (y == 0)
+                return false;
+            //((B.y-A.y)*V2.x+(A.x-B.x)*V2.y)
+            float x = (c.y - a.y) * cx + (a.x - c.x) * cy;
+            float r = x / y;
+            if (r >= 0 & r <= 1)
+            {
+                if (cx == 0)
+                {
+                    //x2=(A.y+x1*V1.y-B.y)/V2.y
+                    y = (a.y - c.y + r * ay) / cy;
+                }
+                else
+                {
+                    //x2=(A.x+x1*V1.x-B.x)/V2.x
+                    y = (a.x - c.x + r * ax) / cx;
+                }
+                //location.x=A.x+x1*V1.x
+                //location.y=A.x+x1*V1.y
+                if (y >= 0 & y <= 1)
+                {
+                    o.x = a.x + r * ax;
+                    o.y = a.y + r * ay;
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// 求两条线段的交点,比上面快一丁点,但无法确定是否相交
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <param name="p3"></param>
+        /// <param name="p4"></param>
+        /// <param name="o"></param>
+        public static void LineToLineA(ref Vector2 p1, ref Vector2 p2, ref Vector2 p3, ref Vector2 p4, ref Vector2 o)
+        {
+            float r0 = (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
+            if (r0 < 0)
+                r0 = -r0;
+            float r1 = (p2.x - p1.x) * (p4.y - p2.y) - (p2.y - p1.y) * (p4.x - p2.x);
+            if (r1 < 0)
+                r1 = -r1;
+            float k = r0 / r1;
+            o.x = (p3.x + k * p4.x) / (1 + k);
+            o.y = (p3.y + k * p4.y) / (1 + k);
         }
         #endregion
     }
