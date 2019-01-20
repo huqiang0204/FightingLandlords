@@ -66,6 +66,25 @@ namespace huqiang
             else ani.PlayOver = over;
             ani.Play();
         }
+        public static void ColorTo(this Graphic grap, Color col, float time, float delay, Action<ColorAnimat> over = null, bool cover = true)
+        {
+            if (grap == null)
+                return;
+            grap.gameObject.SetActive(true);
+            var ani = AnimationManage.Manage.FindAni<ColorAnimat>((o) => { return o.Target == grap ? true : false; });
+            if (ani == null)
+                ani = new ColorAnimat(grap);
+            else if (!cover)
+                return;
+            ani.StartColor = grap.color;
+            ani.EndColor = col;
+            ani.Time = time;
+            ani.Delay = delay;
+            if (over == null)
+                ani.PlayOver = (o) => { o.Dispose(); };
+            else ani.PlayOver = over;
+            ani.Play();
+        }
         public static void Play(this Image img, Sprite[] sprites, float inter = 16, Action<ImageAnimat> over = null, bool hide = true, bool cover = true)
         {
             if (img == null)
