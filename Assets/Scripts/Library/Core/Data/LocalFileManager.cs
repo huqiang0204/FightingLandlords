@@ -93,7 +93,7 @@ namespace huqiang.Data
             return null;
         }
 
-        public static byte[] LoadFile(string name)
+        public static byte[] LoadAssetBundle(string name)
         {
             string fullname= FindAssetBundle(name);
             if(fullname!=null)
