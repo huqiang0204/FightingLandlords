@@ -55,17 +55,6 @@ namespace huqiang
             LeanTween.update();
         }
         /// <summary>
-        /// 创建一个位置和旋转的基础动画
-        /// </summary>
-        /// <param name="target">Transform</param>
-        /// <returns></returns>
-        public Animat CreateAnimat(Transform target)
-        {
-            var ani = new Animat(target);
-            Actions.Add(ani);
-            return ani;
-        }
-        /// <summary>
         /// 添加一个新动画，重复添加会造成多倍运行
         /// </summary>
         /// <param name="ani">动画接口</param>
@@ -234,52 +223,12 @@ namespace huqiang
         }
     }
     /// <summary>
-    /// 动画类型，用于基本动画
-    /// </summary>
-    public enum PlayStyle
-    {
-        None = 0, Position = 1, Angle = 2,Scale=4
-    }
-    /// <summary>
     /// 动画接口
     /// </summary>
     public interface AnimatInterface
     {
         void Update(float time);
     }
-    /// <summary>
-    /// 基本动画
-    /// </summary>
-    public class AnimatBase
-    {
-        public object DataContext { get; set; }
-        protected float m_time;
-        public float Delay { get; set; }
-        public float Time { get { return m_time; } set {  m_time = value; } }
-        public bool Loop;
-        protected float c_time;
-        protected bool playing = false;
-        public virtual void Play()
-        {
-            playing = true;
-            c_time = 0;
-        }
-        public virtual void Pause()
-        {
-            playing = false;
-        }
-        /// <summary>
-        /// 动画运动线
-        /// </summary>
-        public LinearTransformation Linear;
-        /// <summary>
-        /// 用于缓存数据
-        /// </summary>
-        public float[] DataCache;
-        public Vector3[] points;
-
-    }
-
     /// <summary>
     /// 定时器
     /// </summary>
@@ -334,6 +283,9 @@ namespace huqiang
         public object parameter;
         public int level;
     }
+    /// <summary>
+    /// 排队执行函数,如果上一个函数未执行,则会等待该函数执行完毕
+    /// </summary>
     public class DoWaitQueue : AnimatInterface
     {
         void AnimatInterface.Update(float time)
@@ -382,5 +334,4 @@ namespace huqiang
             AnimationManage.Manage.ReleaseAnimat(this);
         }
     }
-
 }
