@@ -195,27 +195,5 @@ namespace huqiang
             float r = Mathf.Sqrt(len * len / sx);
             return new Vector3(v.x * r, v.y * r, v.z * r);
         }
-        public static void Play(this GameObject go)
-        {
-            go.SetActive(false);
-        }
-
-        public static void Play(this Image img, Sprite[] sprites, float inter = 16, Action<ImageAnimat> over = null, bool hide = true)
-        {
-            if (img == null)
-                return;
-            img.gameObject.SetActive(true);
-            var ani = AnimationManage.Manage.FindAni<ImageAnimat>((o) => { return o.image == img ? true : false; });
-            if (ani == null)
-            {
-                ani = new ImageAnimat(img);
-                ani.autoHide = hide;
-                if (over == null)
-                    ani.PlayOver = (o) => { o.Dispose(); };
-                else ani.PlayOver = over;
-                ani.Interval = inter;
-            }
-            ani.Play(sprites);
-        }
     }
 }
