@@ -28,13 +28,6 @@ namespace huqiang
         public UInt16 AllPart;
         public UInt32 PartLen;
     }
-    public struct EnvelopeItem
-    {
-        public EnvelopeHead head;
-        public Int32 part;
-        public UInt32 rcvLen;
-        public byte[] buff;
-    }
     class SocData
     {
         public byte tag;
