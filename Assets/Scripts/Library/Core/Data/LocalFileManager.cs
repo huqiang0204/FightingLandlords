@@ -92,7 +92,6 @@ namespace huqiang.Data
             }
             return null;
         }
-
         public static byte[] LoadAssetBundle(string name)
         {
             string fullname= FindAssetBundle(name);
@@ -107,7 +106,6 @@ namespace huqiang.Data
             }
             return null;
         }
-
         static void DeleteAssetBundle(string name)
         {
             string path = persistentDataPath + "\\bundle";
