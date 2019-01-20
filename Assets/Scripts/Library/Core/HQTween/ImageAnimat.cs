@@ -93,13 +93,12 @@ namespace huqiang
             Target = img;
             AnimationManage.Manage.AddAnimat(this);
         }
-        public void Play()
+        public override void Play()
         {
             lifetime = 0;
-            Playing = true;
+            playing = true;
         }
         public Action<ColorAnimat> PlayOver;
-        bool Playing;
         float lifetime = 0;
         int index = 0;
         public float Interval = 100;

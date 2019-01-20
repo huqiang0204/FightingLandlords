@@ -22,7 +22,7 @@ namespace huqiang
             ani.StartPosition = trans.localPosition;
             ani.EndPosition = pos;
             ani.Time = time;
-            ani.Delay = time;
+            ani.Delay = delay;
             if (over == null)
                 ani.PlayOver = (o) => { o.Dispose(); };
             else ani.PlayOver = over;
@@ -47,7 +47,7 @@ namespace huqiang
             else ani.PlayOver = over;
             ani.Play();
         }
-        public static void ScaleTo(this Transform trans, Vector3 scale, float time, float delay, Action<ScaleAnimat> over = null, bool cover = true)
+        public static void ScaleTo(this Transform trans, Vector3 scale, float time, float delay=0, Action<ScaleAnimat> over = null, bool cover = true)
         {
             if (trans == null)
                 return;
@@ -66,7 +66,7 @@ namespace huqiang
             else ani.PlayOver = over;
             ani.Play();
         }
-        public static void ColorTo(this Graphic grap, Color col, float time, float delay, Action<ColorAnimat> over = null, bool cover = true)
+        public static void ColorTo(this Graphic grap, Color col, float time, float delay=0, Action<ColorAnimat> over = null, bool cover = true)
         {
             if (grap == null)
                 return;

@@ -53,7 +53,15 @@ public class LoadingPage:Page
     public void InitialUI()
     {
         view.tips.text = "正在连接服务器。。。。。。";
-        view.bg.Click = (o, e) => { EmojiInput.ShowInput(null); };
+        view.bg.Click = (o, e) => {
+            //view.tips.color = Color.white;
+            //view.tips.ColorTo(Color.red,3000);
+            //view.tips.transform.localPosition = new Vector3(200,300,0);
+            //view.tips.transform.MoveTo(new Vector3(-200,-200,0),1000,800);
+            //view.tips.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+            //view.tips.transform.ScaleTo(new Vector3(2,2,2),1000,800);
+            //view.tips.transform.RotateTo(new Vector3(0,360,0),800);
+        };
     }
 
     int Versions;
