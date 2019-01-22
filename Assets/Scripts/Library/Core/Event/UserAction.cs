@@ -187,7 +187,7 @@ namespace huqiang
             isPressed = Input.GetMouseButton(0);
             IsRightPressed = Input.GetMouseButton(1);
             IsMiddlePressed = Input.GetMouseButton(2);
-            if (IsLeftButtonDown)
+            if (IsLeftButtonDown|IsRightButtonPressed|IsMiddleButtonPressed)
             {
                 EventTicks = DateTime.Now.Ticks;
                 PressTime = 0;
