@@ -1,0 +1,8 @@
+﻿<linker>
+  <assembly fullname="Assembly-CSharp">
+    <namespace fullname="huqiang" preserve="all"/>
+    <namespace fullname="huqiang.Data" preserve="all"/>
+    <namespace fullname="huqiang.UIModel" preserve="all"/>
+    <namespace fullname="UGUI" preserve="all"/>
+  </assembly>
+</linker>

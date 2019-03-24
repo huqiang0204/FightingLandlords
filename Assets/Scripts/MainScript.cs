@@ -41,8 +41,10 @@ public class MainScript : MonoBehaviour {
 	void Awake () {
         App.Initial(transform as RectTransform);
         ModelManager.LoadModels(baseUI.bytes,"baseUI");
-        ElementAsset.LoadAssetsAsync("base").PlayOver = (o, e) => {
+        KcpDataControll.Instance.Connection("192.168.0.113",9996);
+        ElementAsset.LoadAssetsAsync("base.unity3d").PlayOver = (o, e) => {
             Page.LoadPage<LoadingPage>();
+            KcpDataControll.Instance.Login();
         };
 
     }
