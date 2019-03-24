@@ -77,7 +77,7 @@ public class LoadingPage:Page
             fake[Req.Cmd] = 1;
             fake[Req.Type] = MessageType.Def;
             db.fakeStruct = fake;
-            TcpDataControll.Instance.SendAesStream(db);
+            KcpDataControll.Instance.SendAesStream(db);
         }
         else
         {

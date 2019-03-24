@@ -39,15 +39,16 @@ public class MainScript : MonoBehaviour {
     public RectTransform uiRoot;
 	// Use this for initialization
 	void Awake () {
-        App.InitialBase();
-        App.InitialScene(uiRoot);
+        App.Initial(transform as RectTransform);
         ModelManager.LoadModels(baseUI.bytes,"baseUI");
-        Page.LoadPage<LoadingPage>();
-        TcpDataControll.Instance.Connection("192.168.31.34",6666);
+        ElementAsset.LoadAssetsAsync("base").PlayOver = (o, e) => {
+            Page.LoadPage<LoadingPage>();
+        };
+
     }
     // Update is called once per frame
     void Update () {
-        TcpDataControll.Instance.DispatchMessage();
+        KcpDataControll.Instance.DispatchMessage();
         App.Update();
     }
     /// <summary>
@@ -79,7 +80,7 @@ public class MainScript : MonoBehaviour {
     private void OnApplicationQuit()
     {
         //UdpDataControll.Instance.Close();
-        TcpDataControll.Instance.Close();
+        KcpDataControll.Instance.Close();
         App.Dispose();
     }
     bool rtc;
