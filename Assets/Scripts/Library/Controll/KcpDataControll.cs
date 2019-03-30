@@ -34,6 +34,10 @@ namespace huqiang.Data
             {
                
             }
+            public override void ConnectionOK()
+            {
+                Debug.Log("连接成功");
+            }
         }
         static KcpDataControll ins;
         public static KcpDataControll Instance { get { if (ins == null) ins = new KcpDataControll(); return ins; } }
@@ -66,6 +70,7 @@ namespace huqiang.Data
         }
         public void Close()
         {
+            if(KcpServer.Instance!=null)
             KcpServer.Instance.Dispose();
         }
         public void DispatchMessage()
