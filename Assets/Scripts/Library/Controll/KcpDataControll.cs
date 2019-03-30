@@ -45,7 +45,7 @@ namespace huqiang.Data
             var address = IPAddress.Parse(ip);
             KcpServer.CreateLink = (o) => { return new KcpSocket(o); };
             var kcp = new KcpServer(0,0,1);
-            link = kcp.CreateNewLink(new IPEndPoint(address,9998)) as KcpSocket;
+            link = kcp.CreateNewLink(new IPEndPoint(address,port)) as KcpSocket;
         }
         public void Login()
         {

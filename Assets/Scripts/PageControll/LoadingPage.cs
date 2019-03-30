@@ -89,7 +89,7 @@ public class LoadingPage:Page
             fs.Dispose();
             ModelManager.LoadModels(buf, "hotui");
 
-            fs = File.Open(@"H:\SelfWork\HotFixGame\HotFixGame\bin\Debug\HotFixGame.dll", FileMode.Open);
+            fs = File.Open(@"F:\SelfWork\HotFixGame\HotFixGame\bin\Debug\HotFixGame.dll", FileMode.Open);
             byte[] dll = new byte[fs.Length];
             fs.Read(dll, 0, dll.Length);
             fs.Dispose();
