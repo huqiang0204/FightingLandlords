@@ -96,13 +96,13 @@ public class LoadingPage:Page
 
             LoadPage<HotFixPageEntry>(dll);
 #else
-            dll = LocalFileManager.LoadFile("HotfixDll");
-            ui = LocalFileManager.LoadFile("HotfixUI");
+            dll = LocalFileManager.LoadAssetBundle("HotfixDll");
+            ui = LocalFileManager.LoadAssetBundle("HotfixUI");
             dll = AES.Decrypt(dll, "C31838BAFD614E77BF61A8DB37E1244E", "21F4FCB1B5EA43D7");
             ModelManager.LoadModels(ui, "hotui");
             LoadPage<HotFixPageEntry>(dll);
 #endif
-        }    
+        }
     }
 
     public void DownLoad(string url, string uiurl)
