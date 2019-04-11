@@ -16,6 +16,7 @@ public class LoadingPage:Page
     {
         public EventCallBack bg;
         public Text tips;
+        public TreeView tree;
     }
     LoadingView view;
     public override void Initial(Transform parent, object dat = null)
@@ -26,6 +27,33 @@ public class LoadingPage:Page
         main = model.Main;
 
         InitialUI();
+        TreeViewNode node = new TreeViewNode();
+        node.content = "test";
+        for(int i=0;i<6;i++)
+        {
+            var t = new TreeViewNode();
+            t.content = "yyy"+i;
+            node.child.Add(t);
+            for(int j=0;j<7;j++)
+            {
+                var u = new TreeViewNode();
+                u.content = "xxx" + j;
+                t.child.Add(u);
+                for (int d= 0; d < 7; d++)
+                {
+                    var p= new TreeViewNode();
+                    p.content = "oooo" + d;
+                    u.child.Add(p);
+                    for (int a = 0; a < 7; a++)
+                    {
+                        var l = new TreeViewNode();
+                        l.content = "eeee" + a;
+                        p.child.Add(l);
+                    }
+                }
+            }
+        }
+        view.tree.nodes = node;
     }
     public override void Update(float time)
     {
