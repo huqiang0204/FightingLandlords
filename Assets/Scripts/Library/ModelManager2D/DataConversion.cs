@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace huqiang.ModelManager2D
+namespace huqiang
 {
     public class DataConversion
     {

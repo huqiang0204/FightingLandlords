@@ -26,7 +26,6 @@ namespace huqiang.UIModel
         public RectTransform View;
         public Vector2 Size;//scrollView的尺寸
         Vector2 aSize;
-        //public Vector2 ActualSize { get; protected set; }//相当于Content的尺寸
         public Vector2 ItemSize;
         ModelElement model;
         public TreeViewNode nodes;
@@ -51,7 +50,10 @@ namespace huqiang.UIModel
             {
                 ItemMod = model.FindChild("Item");
                 if (ItemMod != null)
+                {
                     ItemSize = ItemMod.transAttribute.sizeDelta;
+                    ItemHigh = ItemSize.y;
+                }
             }
             swap = new SwapChain<TreeViewItem, TreeViewNode>(512);
         }
@@ -70,17 +72,19 @@ namespace huqiang.UIModel
             if (View == null)
                 return;
              v.y /= eventCall.Target.localScale.y;
-            float y = Limit(back, v.y);
+            Limit(back, v.y);
             Refresh();
         }
         void OnScrollEnd(EventCallBack back)
         {
           
         }
+        float hy;
         public void Refresh()
         {
             if (nodes == null)
                 return;
+            hy = Size.y * 0.5f;
             aSize.y = CalculHigh(nodes,0,0);
             var tmp = swap.Done();
             if (tmp != null)
@@ -103,6 +107,7 @@ namespace huqiang.UIModel
                 }
             }
         }
+ 
         float CalculHigh(TreeViewNode node,int level,float high)
         {
             node.offset.x = level * ItemHigh;
@@ -128,9 +133,14 @@ namespace huqiang.UIModel
                         swap.Add(item);
                         item.node = node;
                         if(item.text!=null)
-                        item.text.text ="▷ "+ node.content;
+                        {
+                            if(node.child.Count>0)
+                                item.text.text = "▷ " + node.content;
+                            else item.text.text = node.content;
+                        }
+                       
                     }
-                    item.callBack.Target.localPosition = new Vector3(node.offset.x,Size.y*0.5f- dy-ItemHigh,0);
+                    item.callBack.Target.localPosition = new Vector3(node.offset.x,hy - dy-ItemHigh*0.5f,0);
                 }
         }
         int tmpPoint = 0;
@@ -167,26 +177,30 @@ namespace huqiang.UIModel
             a.callBack.DataContext = a;
             return a;
         }
-        protected float Limit(EventCallBack callBack, float y)
+        protected void Limit(EventCallBack callBack, float y)
         {
             var size = Size;
+            if (size.y > aSize.y)
+            {
+                m_point = 0;
+                return;
+            }
             if (y == 0)
-                return 0;
+                return ;
             float vy = m_point + y;
             if (vy < 0)
             {
                 m_point = 0;
                 eventCall.VelocityY = 0;
-                return 0;
+                return ;
             }
             else if (vy + size.y > aSize.y)
             {
                 m_point = aSize.y - size.y;
                 eventCall.VelocityY = 0;
-                return 0;
+                return ;
             }
             m_point += y;
-            return y;
         }
     }
 }
