@@ -1,4 +1,5 @@
 ﻿using huqiang.Data;
+using huqiang.UIEvent;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace huqiang.UI
         public Int32 childCount;
         public Int32 name;
         public Int32 tag;
-        public Vector3 localEulerAngles;
+        public Quaternion localRotation;
         public Vector3 localPosition;
         public Vector3 localScale;
         public Vector2 anchoredPosition;
@@ -93,13 +94,25 @@ namespace huqiang.UI
             for (int i = 0; i < components.Count; i++)
                 if (components[i] != null)
                     components[i].LoadToObject(com);
+            Context = com as RectTransform;
+            LoadToObject(Context,ref data, this);
+        }
+        static void LoadToObject(RectTransform com,ref ElementData data,UIElement ui)
+        {
             var trans = com as RectTransform;
-            trans.localEulerAngles = data.localEulerAngles;
+            trans.localRotation = data.localRotation;
             trans.localPosition = data.localPosition;
             trans.localScale = data.localScale;
-            trans.name = name;
-            trans.tag = tag;
-            Context=trans;
+            trans.anchoredPosition = data.anchoredPosition;
+            trans.anchoredPosition3D = data.anchoredPosition3D;
+            trans.anchorMax = data.anchorMax;
+            trans.anchorMin = data.anchorMin;
+            trans.offsetMax = data.offsetMax;
+            trans.offsetMin = data.offsetMin;
+            trans.pivot = data.pivot;
+            trans.sizeDelta = data.sizeDelta;
+            trans.name = ui.name;
+            trans.tag = ui.tag;
         }
         public static unsafe FakeStruct LoadFromObject(Component com, DataBuffer buffer)
         {
@@ -108,7 +121,7 @@ namespace huqiang.UI
                 return null;
             FakeStruct fake = new FakeStruct(buffer, ElementData.ElementSize);
             ElementData* ed = (ElementData*)fake.ip;
-            ed->localEulerAngles = trans.localEulerAngles;
+            ed->localRotation = trans.localRotation;
             ed->localPosition = trans.localPosition;
             ed->localScale = trans.localScale;
             ed->anchoredPosition = trans.anchoredPosition;
@@ -349,5 +362,22 @@ namespace huqiang.UI
             }
         }
         #endregion
+
+        public bool activeSelf;
+        public BaseEvent baseEvent;
+        public override void Apply()
+        {
+            if (Context == null)
+            {
+                var obj = ModelManagerUI.CreateNew(data.type);
+                LoadToObject(obj.transform);
+            }
+            else if (IsChanged)
+                LoadToObject(Context, ref data, this);
+            for (int i = 0; i < components.Count; i++)
+                if (components[i] != null)
+                    if (components[i].IsChanged)
+                        components[i].Apply();
+        }
     }
 }
