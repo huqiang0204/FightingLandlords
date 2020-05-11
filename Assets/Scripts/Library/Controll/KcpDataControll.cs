@@ -4,63 +4,84 @@ using UnityEngine;
 using System.Text;
 using huqiang;
 using huqiang.Data;
-using System.Collections.Generic;
 
-namespace huqiang.Data
+namespace DataControll
 {
+    public class Req
+    {
+        public const Int32 Cmd = 0;
+        public const Int32 Type = 1;
+        public const Int32 Error = 2;
+        public const Int32 Args = 3;
+        public const Int32 Length = 4;
+    }
+    public class MessageType
+    {
+        public const Int32 Background = -1;
+        public const Int32 Def = 0;
+        public const Int32 Rpc = 1;
+        public const Int32 Query = 2;
+        public const Int32 Game = 3;
+    }
+    [Serializable]
+    public class LogData
+    {
+        public string condition;
+        public string stackTrace;
+        public LogType type;
+    }
     public class KcpDataControll
     {
-        class KcpData
+        public class KcpData
         {
             public byte[] dat;
             public byte tag;
         }
-        class KcpSocket : KcpLink
+        public class KcpSocket : KcpLink
         {
-            public Queue<KcpData> datas;
-            public KcpSocket(KcpServer server) : base(server)
+            public QueueBuffer<KcpData> datas;
+            public KcpSocket()
             {
-                datas = new Queue<KcpData>();
+                datas = new QueueBuffer<KcpData>();
             }
             public override void Dispatch(byte[] dat, byte tag)
             {
                 KcpData data = new KcpData();
                 data.dat = dat;
                 data.tag = tag;
-                lock (datas)
-                    datas.Enqueue(data);
+                datas.Enqueue(data);
             }
             public override void Disconnect()
             {
-               
             }
             public override void ConnectionOK()
             {
-                Debug.Log("连接成功");
+                //LoginTable login = new LoginTable();
+                //login.user = "hujianhai";
+                //login.pass = "123456";
+                //Instance.SendObject<LoginTable>(DefCmd.Login,MessageType.Def,login);
             }
         }
         static KcpDataControll ins;
         public static KcpDataControll Instance { get { if (ins == null) ins = new KcpDataControll(); return ins; } }
+        public bool Connected { get { if (link == null)
+                    return false;
+                return link.Connected;
+            } }
         string UniId;
         KcpSocket link;
         public void Connection(string ip,int port)
         {
             UniId = SystemInfo.deviceUniqueIdentifier;
             var address = IPAddress.Parse(ip);
-            KcpServer.CreateLink = (o) => { return new KcpSocket(o); };
-            var kcp = new KcpServer(0,0,1);
-            link = kcp.CreateNewLink(new IPEndPoint(address,port)) as KcpSocket;
+            var kcp = new KcpServer<KcpSocket>(0);
+            kcp.Run(1);
+            link = kcp.FindOrCreateLink(new IPEndPoint(address,port));
+            link.Send(new byte[1], 0);
         }
         public void Login()
         {
-            DataBuffer db = new DataBuffer();
-            var fake = new FakeStruct(db, Req.Length);
-            fake[Req.Cmd] = 0;
-            fake[Req.Type] = MessageType.Rpc;
-            fake.SetData(Req.Args, UniId);
-            db.fakeStruct = fake;
-
-            SendAesStream(db);
+            //SendString(DefCmd.TouristLogin, MessageType.Def, UniId);
         }
         public int pin;
         public int userId;
@@ -68,10 +89,27 @@ namespace huqiang.Data
         {
            
         }
+        public void OpenLog()
+        {
+            Application.logMessageReceived += Log;
+        }
+        public void Log(string condtion, string stack, LogType type)
+        {
+            LogData log = new LogData();
+            log.condition = condtion;
+            log.stackTrace = stack;
+            log.type = type;
+            var str = JsonUtility.ToJson(log);
+            link.Send(Encoding.UTF8.GetBytes(str), EnvelopeType.String);
+        }
         public void Close()
         {
-            if(KcpServer.Instance!=null)
-            KcpServer.Instance.Dispose();
+            if(KcpListener.Instance!=null)
+            KcpListener.Instance.Dispose();
+            Application.logMessageReceived -= Log;
+            if (link != null)
+                link.Dispose();
+            link = null;
         }
         public void DispatchMessage()
         {
@@ -90,8 +128,9 @@ namespace huqiang.Data
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
+
             }
         }
         float Time;
@@ -113,13 +152,12 @@ namespace huqiang.Data
                     DispatchJson(json);
                     break;
                 case EnvelopeType.AesDataBuffer:
-                    dec = AES.Instance.Decrypt(data, 0, data.Length);
-                    DataBuffer buff = new DataBuffer(dec);
-                    DispatchStream(buff);
+                    //var buff = KcpPack.UnPack(data);
+                    //if (buff != null)
+                    //    DispatchStream(buff);
                     break;
                 case EnvelopeType.DataBuffer:
-                    buff = new DataBuffer(data);
-                    DispatchStream(buff);
+
                     break;
                 case EnvelopeType.String:
                     json = Encoding.UTF8.GetString(data);
@@ -137,107 +175,103 @@ namespace huqiang.Data
         }
         void DispatchJson(string json)
         {
-            var j = JsonUtility.FromJson<reqs>(json);
+            //var j = JsonUtility.FromJson<reqs>(json);
 
         }
         void DispatchStream(DataBuffer buffer)
         {
-            Page.CurrentPage.Cmd(buffer);
+            var fake = buffer.fakeStruct;
+           
+            if (fake != null)
+            {
+                if (fake[Req.Error] > 0)
+                {
+                    switch (fake[Req.Type])
+                    {
+                        case MessageType.Def:
+                            //DefaultErrorControll.Dispatch(buffer);
+                            break;
+                        case MessageType.Rpc:
+                            //RpcErrorControll.Dispatch(buffer);
+                            break;
+                        case MessageType.Query:
+                            //QueryData.Dispatch(linker, buffer);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (fake[Req.Type])
+                    {
+                        case MessageType.Def:
+                            //DefaultDataControll.Dispatch(buffer);
+                            break;
+                        case MessageType.Game:
+                            //GameDataControll.Dispatch(buffer);
+                            break;
+                        case MessageType.Rpc:
+                            //RpcDataControll.Dispatch(buffer);
+                            break;
+                        case MessageType.Query:
+                            //QueryData.Dispatch(linker, buffer);
+                            break;
+                    }
+                }
+            }
         }
         void SendAesJson(byte[] dat )
         {
             link.Send(dat, EnvelopeType.AesJson); 
         }
-        public void SendStream(DataBuffer db)
-        {
-             link.Send(db.ToBytes(), EnvelopeType.DataBuffer);
-        }
         public void SendAesStream(DataBuffer db)
         {
-            link.Send(AES.Instance.Encrypt(db.ToBytes()),EnvelopeType.AesDataBuffer);
+            //var buf =  KcpPack.Pack(db);
+            //link.Send(buf,EnvelopeType.AesDataBuffer);
         }
-        public void SendObject(string cmd, object p, string type = "def")
+        public void SendString(Int32 cmd, Int32 type, string obj)
         {
-            reqs r = new reqs();
-            r.type = type;
-            r.cmd = cmd;
-            r.pin = pin;
-            r.userId = userId;
-            r.args = JsonUtility.ToJson(p);
-            //r.lan = Local.Instance.set.Language;
-            string str = JsonUtility.ToJson(r);
-            SendAesJson(JavaAES.Instance.Encrypt(str));
+            //var buf = KcpPack.PackString(cmd,type,obj);
+            //link.Send(buf, EnvelopeType.AesDataBuffer);
         }
-        public void SendString(string cmd, string str, string type = "def")
+        public void SendNull(Int32 cmd, Int32 type)
         {
-            reqs r = new reqs();
-            r.type = type;
-            r.cmd = cmd;
-            r.pin = pin;
-            r.userId = userId;
-            r.args = str;
-            //r.lan = Local.Instance.set.Language;
-            str = JsonUtility.ToJson(r);
-            SendAesJson(JavaAES.Instance.Encrypt(str));
+            //var buf = KcpPack.PackNull(cmd, type);
+            //link.Send(buf, EnvelopeType.AesDataBuffer);
         }
-
-        public void SendNull(string cmd,string type="def")
+        public void SendInt(Int32 cmd, Int32 type, int args)
         {
-            req r = new req();
-            r.type = type;
-            r.cmd = cmd;
-            r.pin = pin;
-            r.userId = userId;
-            //r.lan = Local.Instance.set.Language;
-            string str = JsonUtility.ToJson(r);
-            SendAesJson(JavaAES.Instance.Encrypt(str));
+            //var buf = KcpPack.PackInt(cmd, type, args);
+            //link.Send(buf, EnvelopeType.AesDataBuffer);
         }
-        public void Send(req r, string cmd, string type = "def")
+        public void SendLong(Int32 cmd, Int32 type, long obj)
         {
-            r.type = type;
-            r.cmd = cmd;
-            r.pin = pin;
-            r.userId = userId;
-            //r.lan = Local.Instance.set.Language;
-            string str = JsonUtility.ToJson(r);
-            SendAesJson(JavaAES.Instance.Encrypt(str));
+            //var buf = KcpPack.PackLong(cmd, type, obj);
+            //link.Send(buf, EnvelopeType.AesDataBuffer);
         }
-
-        [Serializable]
-        class reqi : req
+        public void SendStruct<T>(Int32 cmd, Int32 type, T obj) where T : unmanaged
         {
-            public int args;
+            //var buf = KcpPack.PackStruct<T>(cmd, type, obj);
+            //link.Send(buf, EnvelopeType.AesDataBuffer);
         }
-        [Serializable]
-        class reqd : req
+        public void SendObject<T>(Int32 cmd, Int32 type, object obj) where T : class
         {
-            public double args;
+            //var buf = KcpPack.PackObject<T>(cmd, type, obj);
+            //link.Send(buf, EnvelopeType.AesDataBuffer);
         }
-        [Serializable]
-        class reqb : req
+        public void SendMate(byte[] buf)
         {
-            public bool args;
+            link.Send(buf, EnvelopeType.Mate);
         }
-    }
-    [Serializable]
-    class rpc
-    {
-        public int pin;
-        public string cmd;
-        public string type;
-        public string args;
     }
     [Serializable]
     class PlatFrom
     {
         public int platform;
     }
-    public class DataCode
+    [Serializable]
+    public class LoginTable
     {
-        public const string Type_Rpc = "rpc";
-        public const string Type_Game = "game";
-        public const string Type_Empty = "def";
-        public const string Type_Query = "query";
+        public string user;
+        public string pass;
     }
-
 }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using huqiang.Core.HGUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Language
 {
@@ -21,8 +21,8 @@ public class Language
         var txt = Resources.Load<TextAsset>("/lan/"+lan);
         if (txt != null)
             Analytical(txt.text);
-        if(Page.CurrentPage!=null)
-        Page.CurrentPage.ChangeLanguage();
+        if (UIPage.CurrentPage != null)
+            UIPage.CurrentPage.ChangeLanguage();
     }
     static void Analytical(string text)
     {
@@ -97,10 +97,10 @@ public class Language
     }
     static void LoadLanguage(Transform transform)
     {
-        var txt = transform.GetComponent<Text>();
+        var txt = transform.GetComponent<HText>();
         if (txt != null)
         {
-            txt.text = GetContent(txt.name);
+            txt.Text = GetContent(txt.name);
         }
         var c = transform.childCount;
         for(int i = 0; i < c; i++)

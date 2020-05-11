@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using huqiang.UIModel;
 using huqiang;
 using System;
 using System.Collections;
@@ -39,19 +38,19 @@ public class MainScript : MonoBehaviour {
     public RectTransform uiRoot;
 	// Use this for initialization
 	void Awake () {
-        App.Initial(transform as RectTransform);
-        ModelManager.LoadModels(baseUI.bytes,"baseUI");
-        KcpDataControll.Instance.Connection("192.168.0.113", 9998);
-        ElementAsset.LoadAssetsAsync("base.unity3d").PlayOver = (o, e) =>
-        {
-            Page.LoadPage<LoadingPage>();
-            KcpDataControll.Instance.Login();
-        };
+        //App.Initial(transform as RectTransform);
+        //ModelManager.LoadModels(baseUI.bytes,"baseUI");
+        //KcpDataControll.Instance.Connection("192.168.0.113", 9998);
+        //ElementAsset.LoadAssetsAsync("base.unity3d").PlayOver = (o, e) =>
+        //{
+        //    Page.LoadPage<LoadingPage>();
+        //    KcpDataControll.Instance.Login();
+        //};
     }
     // Update is called once per frame
     void Update () {
-        KcpDataControll.Instance.DispatchMessage();
-        App.Update();
+        //KcpDataControll.Instance.DispatchMessage();
+        //App.Update();
     }
     /// <summary>
     /// 执行协程任务
@@ -82,7 +81,7 @@ public class MainScript : MonoBehaviour {
     private void OnApplicationQuit()
     {
         //UdpDataControll.Instance.Close();
-        KcpDataControll.Instance.Close();
+        //KcpDataControll.Instance.Close();
         App.Dispose();
     }
     bool rtc;
