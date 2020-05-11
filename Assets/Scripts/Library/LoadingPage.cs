@@ -73,7 +73,7 @@ public class LoadingPage : UIPage
     void VersionCheck()
     {
         string dic = Application.persistentDataPath + "/";
-        string tempath = dic + "versions.txt";
+        string tempath = dic + "versions.ini";
         string[] temversions = File.ReadAllLines(tempath);
         for (int i = 0; i < temversions.Length; i++)
         {
