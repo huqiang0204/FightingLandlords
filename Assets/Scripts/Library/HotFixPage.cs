@@ -19,8 +19,8 @@ public class HotFixPage:UIPage
             byte[] ui = File.ReadAllBytes(dic + "baseUI.bytes");
             HGUIManager.LoadModels(ui, "baseUI");
         }
-        string dll = dic + "WRFHotFix.dll";
-        string pdb = dic + "WRFHotFix.dll";
+        string dll = dic + "HotFix.dll";
+        string pdb = dic + "HotFix.dll";
         HotFix.Instance.Load(File.ReadAllBytes(dll));
         HotFix.Instance.Start(Parent, "Start", dat);
     }

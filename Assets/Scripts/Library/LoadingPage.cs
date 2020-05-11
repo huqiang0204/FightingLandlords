@@ -24,7 +24,7 @@ public class LoadingPage : UIPage
     public override void Initial(Transform parent, object dat = null)
     {
         base.Initial(parent, dat);
-        view = LoadUI<View>("baseUI", "loading");//"baseUI"创建的bytes文件名,"page"为创建的页面名
+        view = LoadUI<View>("baseUI", "Loading");//"baseUI"创建的bytes文件名,"page"为创建的页面名
         view.FillImage.SizeChanged = (o) => { SetProgress(fill); };
         DownloadVersion();
     }
@@ -158,7 +158,6 @@ public class LoadingPage : UIPage
         }
         if (ossMissions.Count == 0 && LMissions.Count == 0)
         {
-            LoadPage<HotFixPage>();
             if (request == null)
             {
                 AsyncLoading();
