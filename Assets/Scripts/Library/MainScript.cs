@@ -20,10 +20,10 @@ public class MainScript : HCanvas
 #if UNITY_EDITOR
         AssetBundle.UnloadAllAssetBundles(true);
 #endif
-        ElementAsset.LoadAssetsAsync("base.unity3d").PlayOver = (o, e) =>
-        {
+        //ElementAsset.LoadAssetsAsync("base.unity3d").PlayOver = (o, e) =>
+        //{
             UIPage.LoadPage<LoadingPage>("checkOss");
-        };
+       // };
     }
     public bool Pause;
     private void OnApplicationQuit()

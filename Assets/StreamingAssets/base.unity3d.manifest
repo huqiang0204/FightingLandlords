@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3128947173
+CRC: 2770191517
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9800d82eb9ab19abe0264e588d974712
+    Hash: a17cb03920fc31797427d48926e59657
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+    Hash: 9e6ad29cbd2df8fbe1a15315db0e51ab
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -15,5 +15,4 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/AssetsBundle/Picture/Poker.png
-- Assets/AssetsBundle/Picture/emoji.png
 Dependencies: []
