@@ -79,15 +79,10 @@ namespace DataControll
             link = kcp.FindOrCreateLink(new IPEndPoint(address,port));
             link.Send(new byte[1], 0);
         }
-        public void Login()
-        {
-            //SendString(DefCmd.TouristLogin, MessageType.Def, UniId);
-        }
         public int pin;
         public int userId;
         public void FailedConnect()
         {
-           
         }
         public void OpenLog()
         {
@@ -152,9 +147,9 @@ namespace DataControll
                     DispatchJson(json);
                     break;
                 case EnvelopeType.AesDataBuffer:
-                    //var buff = KcpPack.UnPack(data);
-                    //if (buff != null)
-                    //    DispatchStream(buff);
+                    dec = AES.Instance.Decrypt(data, 0, data.Length);
+                    if (dec!= null)
+                        DispatchStream(new DataBuffer(dec));
                     break;
                 case EnvelopeType.DataBuffer:
 
@@ -176,7 +171,6 @@ namespace DataControll
         void DispatchJson(string json)
         {
             //var j = JsonUtility.FromJson<reqs>(json);
-
         }
         void DispatchStream(DataBuffer buffer)
         {
@@ -225,53 +219,41 @@ namespace DataControll
         }
         public void SendAesStream(DataBuffer db)
         {
-            //var buf =  KcpPack.Pack(db);
-            //link.Send(buf,EnvelopeType.AesDataBuffer);
+            var dat = db.ToBytes();
+            dat = AES.Instance.Encrypt(dat);
+            link.Send(dat, EnvelopeType.AesDataBuffer);
         }
         public void SendString(Int32 cmd, Int32 type, string obj)
         {
-            //var buf = KcpPack.PackString(cmd,type,obj);
-            //link.Send(buf, EnvelopeType.AesDataBuffer);
+            DataBuffer db = new DataBuffer(4);
+            var fs = db.fakeStruct = new FakeStruct(db, Req.Length);
+            fs[Req.Cmd] = cmd;
+            fs[Req.Type] = type;
+            fs.SetData(Req.Args, obj);
+            var dat = db.ToBytes();
+            dat = AES.Instance.Encrypt(dat);
+            link.Send(dat, EnvelopeType.AesDataBuffer);
         }
         public void SendNull(Int32 cmd, Int32 type)
         {
-            //var buf = KcpPack.PackNull(cmd, type);
-            //link.Send(buf, EnvelopeType.AesDataBuffer);
+            DataBuffer db = new DataBuffer(4);
+            var fs = db.fakeStruct = new FakeStruct(db, Req.Length);
+            fs[Req.Cmd] = cmd;
+            fs[Req.Type] = type;
+            var dat = db.ToBytes();
+            dat = AES.Instance.Encrypt(dat);
+            link.Send(dat, EnvelopeType.AesDataBuffer);
         }
         public void SendInt(Int32 cmd, Int32 type, int args)
         {
-            //var buf = KcpPack.PackInt(cmd, type, args);
-            //link.Send(buf, EnvelopeType.AesDataBuffer);
+            DataBuffer db = new DataBuffer(4);
+            var fs = db.fakeStruct = new FakeStruct(db, Req.Length);
+            fs[Req.Cmd] = cmd;
+            fs[Req.Type] = type;
+            fs[Req.Args]= args;
+            var dat = db.ToBytes();
+            dat = AES.Instance.Encrypt(dat);
+            link.Send(dat, EnvelopeType.AesDataBuffer);
         }
-        public void SendLong(Int32 cmd, Int32 type, long obj)
-        {
-            //var buf = KcpPack.PackLong(cmd, type, obj);
-            //link.Send(buf, EnvelopeType.AesDataBuffer);
-        }
-        public void SendStruct<T>(Int32 cmd, Int32 type, T obj) where T : unmanaged
-        {
-            //var buf = KcpPack.PackStruct<T>(cmd, type, obj);
-            //link.Send(buf, EnvelopeType.AesDataBuffer);
-        }
-        public void SendObject<T>(Int32 cmd, Int32 type, object obj) where T : class
-        {
-            //var buf = KcpPack.PackObject<T>(cmd, type, obj);
-            //link.Send(buf, EnvelopeType.AesDataBuffer);
-        }
-        public void SendMate(byte[] buf)
-        {
-            link.Send(buf, EnvelopeType.Mate);
-        }
-    }
-    [Serializable]
-    class PlatFrom
-    {
-        public int platform;
-    }
-    [Serializable]
-    public class LoginTable
-    {
-        public string user;
-        public string pass;
     }
 }

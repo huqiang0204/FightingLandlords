@@ -4,6 +4,7 @@ using huqiang.Core.HGUI;
 using System;
 using System.IO;
 using UnityEngine;
+using DataControll;
 
 public class MainScript : HCanvas
 {
@@ -23,7 +24,8 @@ public class MainScript : HCanvas
         //ElementAsset.LoadAssetsAsync("base.unity3d").PlayOver = (o, e) =>
         //{
             UIPage.LoadPage<LoadingPage>("checkOss");
-       // };
+        // };
+        KcpDataControll.Instance.Connection("192.168.0.134",8899);
     }
     public bool Pause;
     private void OnApplicationQuit()
