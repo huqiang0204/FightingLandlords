@@ -380,9 +380,9 @@ namespace huqiang
             }
             return buf;
         }
-        public static List<EnvelopeData> UnpackInt(byte[] dat, int len, byte[] buffer, ref int remain)
+        public static List<byte[]> UnpackInt(byte[] dat, int len, byte[] buffer, ref int remain)
         {
-            List<EnvelopeData> list = new List<EnvelopeData>();
+            List<byte[]> list = new List<byte[]>();
             int s = remain;
             for (int i = 0; i < len; i++)
             {
@@ -410,10 +410,7 @@ namespace huqiang
                                 else if (b == 254)
                                 {
                                     e = i;
-                                    EnvelopeData data = new EnvelopeData();
-                                    data.data = UnpackInt(buffer, s, e);
-                                    data.type = buffer[s - 1];
-                                    list.Add(data);
+                                    list.Add(UnpackInt(buffer, s, e));
                                 }
                             }
                     }
@@ -453,7 +450,7 @@ namespace huqiang
         /// </summary>
         /// <param name="datas"></param>
         /// <returns></returns>
-        public static List<EnvelopePart> EnvlopeDataToPart(List<EnvelopeData> datas)
+        public static List<EnvelopePart> EnvlopeDataToPart(List<byte[]> datas)
         {
             if (datas == null)
                 return null;
@@ -462,11 +459,10 @@ namespace huqiang
             for (int i = 0; i < c; i++)
             {
                 EnvelopePart part = new EnvelopePart();
-                var buf = ReadPart(datas[i].data, out part.head);
+                var buf = ReadPart(datas[i], out part.head);
                 if (buf != null)
                 {
                     part.data = buf;
-                    part.type = datas[i].type;
                     parts.Add(part);
                 }
             }
@@ -544,6 +540,7 @@ namespace huqiang
                 EnvelopeHead* head = (EnvelopeHead*)buf;
                 head->MsgID = msgId;
                 head->CurPart = partID;
+                head->Type = type;
                 return PackInt(buf, 14);
             }
 
