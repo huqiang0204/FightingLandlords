@@ -56,10 +56,6 @@ namespace DataControll
             }
             public override void ConnectionOK()
             {
-                //LoginTable login = new LoginTable();
-                //login.user = "hujianhai";
-                //login.pass = "123456";
-                //Instance.SendObject<LoginTable>(DefCmd.Login,MessageType.Def,login);
             }
         }
         static KcpDataControll ins;
@@ -68,16 +64,47 @@ namespace DataControll
                     return false;
                 return link.Connected;
             } }
-        string UniId;
         KcpSocket link;
+        KcpServer<KcpSocket> kcp;
         public void Connection(string ip,int port)
         {
-            UniId = SystemInfo.deviceUniqueIdentifier;
+            if (kcp == null)
+            {
+                kcp = new KcpServer<KcpSocket>(0);
+                kcp.Run(1);
+            }
             var address = IPAddress.Parse(ip);
-            var kcp = new KcpServer<KcpSocket>(0);
-            kcp.Run(1);
             link = kcp.FindOrCreateLink(new IPEndPoint(address,port));
             link.Send(new byte[1], 0);
+        }
+        public void Redirect(string ip,int port)
+        {
+            if (kcp == null)
+            {
+                kcp = new KcpServer<KcpSocket>(0);
+                kcp.Run(1);
+            }
+            if (link==null)
+            {
+                var address = IPAddress.Parse(ip);
+                link = kcp.FindOrCreateLink(new IPEndPoint(address, port));
+                link.Send(new byte[1], 0);
+            }
+            else
+            {
+                var add= IPAddress.Parse(ip);
+                link.endpPoint.Address = add;
+                link.endpPoint.Port = port;
+                var b = add.GetAddressBytes();
+                unsafe
+                {
+                    fixed (byte* bp = &b[0])
+                        link.ip = *(Int32*)bp;
+                }
+                link.port = port;
+                link.envelope.Clear();
+                link.metaData.Clear();
+            }
         }
         public int pin;
         public int userId;
@@ -86,7 +113,7 @@ namespace DataControll
         }
         public void OpenLog()
         {
-            Application.logMessageReceived += Log;
+            //Application.logMessageReceived += Log;
         }
         public void Log(string condtion, string stack, LogType type)
         {
@@ -101,7 +128,7 @@ namespace DataControll
         {
             if(KcpListener.Instance!=null)
             KcpListener.Instance.Dispose();
-            Application.logMessageReceived -= Log;
+            //Application.logMessageReceived -= Log;
             if (link != null)
                 link.Dispose();
             link = null;
@@ -174,44 +201,45 @@ namespace DataControll
         }
         void DispatchStream(DataBuffer buffer)
         {
-            var fake = buffer.fakeStruct;
-           
-            if (fake != null)
-            {
-                if (fake[Req.Error] > 0)
-                {
-                    switch (fake[Req.Type])
-                    {
-                        case MessageType.Def:
-                            //DefaultErrorControll.Dispatch(buffer);
-                            break;
-                        case MessageType.Rpc:
-                            //RpcErrorControll.Dispatch(buffer);
-                            break;
-                        case MessageType.Query:
-                            //QueryData.Dispatch(linker, buffer);
-                            break;
-                    }
-                }
-                else
-                {
-                    switch (fake[Req.Type])
-                    {
-                        case MessageType.Def:
-                            //DefaultDataControll.Dispatch(buffer);
-                            break;
-                        case MessageType.Game:
-                            //GameDataControll.Dispatch(buffer);
-                            break;
-                        case MessageType.Rpc:
-                            //RpcDataControll.Dispatch(buffer);
-                            break;
-                        case MessageType.Query:
-                            //QueryData.Dispatch(linker, buffer);
-                            break;
-                    }
-                }
-            }
+            UIPage.CurrentPage.Cmd(buffer);
+            //var fake = buffer.fakeStruct;
+            //if (fake != null)
+            //{
+            //    if (fake[Req.Error] > 0)
+            //    {
+            //        switch (fake[Req.Type])
+            //        {
+            //            case MessageType.Def:
+            //                //DefaultErrorControll.Dispatch(buffer);
+            //                break;
+            //            case MessageType.Rpc:
+            //                //RpcErrorControll.Dispatch(buffer);
+            //                break;
+            //            case MessageType.Query:
+            //                //QueryData.Dispatch(linker, buffer);
+            //                break;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        switch (fake[Req.Type])
+            //        {
+            //            case MessageType.Def:
+            //                //DefaultDataControll.Dispatch(buffer);
+
+            //                break;
+            //            case MessageType.Game:
+            //                //GameDataControll.Dispatch(buffer);
+            //                break;
+            //            case MessageType.Rpc:
+            //                //RpcDataControll.Dispatch(buffer);
+            //                break;
+            //            case MessageType.Query:
+            //                //QueryData.Dispatch(linker, buffer);
+            //                break;
+            //        }
+            //    }
+            //}
         }
         void SendAesJson(byte[] dat )
         {

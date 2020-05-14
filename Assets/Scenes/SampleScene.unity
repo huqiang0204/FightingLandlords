@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 534669903}
   m_Layer: 0
   m_Name: MainCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7f2cd6c73349448a020545bf1c1fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sizeDelta: {x: 100, y: 100}
+  m_sizeDelta: {x: 1920, y: 1080}
   Pivot: {x: 0.5, y: 0.5}
   scaleType: 0
   anchorType: 0
@@ -468,8 +468,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794623708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -9.69}
+  m_LocalScale: {x: 0.00033139455, y: 0.00033139455, z: 0.00033139455}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1

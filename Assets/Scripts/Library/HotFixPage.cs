@@ -1,5 +1,6 @@
 ﻿using Assets.Game.HotFix;
 using huqiang.Core.HGUI;
+using huqiang.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,6 +32,14 @@ public class HotFixPage:UIPage
     public override void Update(float time)
     {
         HotFix.Instance.RuntimeUpdate(time);
+    }
+    public override void Cmd(string cmd, object dat)
+    {
+        HotFix.Instance.RuntimeCmd(cmd, dat as string);
+    }
+    public override void Cmd(DataBuffer dat)
+    {
+        HotFix.Instance.RuntimeFullCmd(dat);
     }
     public override void ReSize()
     {

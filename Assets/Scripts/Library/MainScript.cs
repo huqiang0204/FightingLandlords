@@ -25,12 +25,18 @@ public class MainScript : HCanvas
         //{
             UIPage.LoadPage<LoadingPage>("checkOss");
         // };
-        KcpDataControll.Instance.Connection("192.168.0.134",8899);
+        KcpDataControll.Instance.Connection("193.112.70.170",8899);
     }
     public bool Pause;
+    protected override void Update()
+    {
+        base.Update();
+        KcpDataControll.Instance.DispatchMessage();
+    }
     private void OnApplicationQuit()
     {
         base.OnDestroy();
         App.Dispose();
+        KcpDataControll.Instance.Close();
     }
 }
